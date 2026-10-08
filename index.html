@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light only">
+<meta name="theme-color" content="#FBF6F7">
 <meta name="description" content="生年月日といくつかの質問から、今のあなたに合う天然石を選び、ブレスレットを3つのデザインでご提案。数秘術と九星気学で近々の運勢も。高次元SHOPのオーダーメイド診断です。">
 <meta property="og:title" content="大開運！天然石ブレスレットのオーダーメイド！">
 <meta property="og:description" content="あなただけの天然石ブレスレットを3つのデザインでご提案。近々の運勢もわかる無料診断。">
@@ -15,6 +17,7 @@
 <style>
 /* Layout: phone-first single column on a pearl-blush ground; jewelry shown on a plum velvet tray; rose-gold is the one accent */
 :root{
+  color-scheme:light; /* いつでも明るいピンクの配色で表示 */
   --bg:#FBF6F7;        /* pearl blush */
   --bg2:#F2E8F0;       /* lavender blush */
   --surface:#FFFFFF;
@@ -35,12 +38,6 @@
   --f-body:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
   --f-latin:"Cormorant Garamond","Times New Roman",serif; /* 英字の小見出し */
 }
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#1B141E;--bg2:#251B29;--surface:#271D2B;--ink:#F4E9F0;--muted:#B9A5B4;--line:#3D2F42;
-  --rose:#EBB1A3;--rose-a:#E8B6A8;--rose-b:#B97C6E;--soft:#3A2830;--lav:#C6A9E6;--warn:#F0A08E;--ok:#8FD0AE;color-scheme:dark}}
-:root[data-theme="dark"]{
-  --bg:#1B141E;--bg2:#251B29;--surface:#271D2B;--ink:#F4E9F0;--muted:#B9A5B4;--line:#3D2F42;
-  --rose:#EBB1A3;--rose-a:#E8B6A8;--rose-b:#B97C6E;--soft:#3A2830;--lav:#C6A9E6;--warn:#F0A08E;--ok:#8FD0AE;color-scheme:dark}
 
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);background-image:radial-gradient(60rem 30rem at 110% -10%,var(--bg2),transparent 60%),radial-gradient(40rem 30rem at -20% 30%,var(--soft),transparent 60%);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.8;letter-spacing:.02em}
@@ -64,7 +61,7 @@ p{margin:0}
 .cover{position:relative;padding-top:6px}
 .cover .script{font-family:var(--f-script);font-size:clamp(46px,14vw,62px);color:var(--rose-b);line-height:1;transform:rotate(-6deg);display:inline-block;margin-bottom:-6px;text-shadow:0 1px 0 rgba(255,255,255,.6)}
 .title{font-family:var(--f-display);font-weight:var(--w-display);line-height:1.3;margin:0}
-.title .big{display:block;font-size:clamp(56px,17vw,76px);letter-spacing:.06em;background:linear-gradient(120deg,var(--rose-b),var(--rose-a) 45%,var(--rose-b));-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 rgba(255,255,255,.7))}
+.title .big{display:block;font-size:clamp(56px,17vw,76px);letter-spacing:.06em;background:linear-gradient(120deg,#9A5A4E,#C98A7A 45%,#9A5A4E);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 2px 0 rgba(255,255,255,.85)) drop-shadow(0 0 10px rgba(255,255,255,.8))}
 .title .sub{display:block;font-size:clamp(23px,7vw,30px);letter-spacing:.08em}
 .lead{color:var(--muted);font-size:15px;line-height:1.95;background:radial-gradient(closest-side,var(--bg) 55%,transparent);padding:10px 0}
 .cover .title,.cover .script{text-shadow:0 0 18px var(--bg)}
@@ -191,8 +188,6 @@ h1,h2,h3,.kwcatch,.lead,.cats p,.month p,.lk b,.why,.akki p{word-break:auto-phra
 body{position:relative;min-height:100vh}
 body::before{content:"";position:absolute;top:0;left:0;right:0;height:1100px;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221800%22%20height%3D%221100%22%20viewBox%3D%220%200%201800%201100%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2230%22%20height%3D%2251.9615%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%239B86B5%22%20stroke-width%3D%22.7%22%20opacity%3D%22.2%22%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-30.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2260.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2275.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3C%2Fpattern%3E%3CclipPath%20id%3D%22k%22%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3C%2FclipPath%3E%3CradialGradient%20id%3D%22glow%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%221800%22%20height%3D%221100%22%20fill%3D%22url(%23p)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%22102%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C9A15A%22%20stroke-width%3D%221.1%22%20opacity%3D%22.55%22%3E%3Cg%20clip-path%3D%22url(%23k)%22%3E%3Ccircle%20cx%3D%22975.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221095.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2294.20%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top/1800px 1100px no-repeat;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%);mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%)}
 body::after{content:"";position:absolute;left:0;right:0;bottom:0;height:420px;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22296%22%20height%3D%22296%22%20viewBox%3D%220%200%20296%20296%22%3E%3Cdefs%3E%3CclipPath%20id%3D%22k%22%3E%3Ccircle%20cx%3D%22148%22%20cy%3D%22148%22%20r%3D%22144%22%2F%3E%3C%2FclipPath%3E%3C%2Fdefs%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C48C82%22%20stroke-width%3D%221%22%20opacity%3D%220.24%22%3E%3Cg%20clip-path%3D%22url(%23k)%22%3E%3Ccircle%20cx%3D%2252.00%22%20cy%3D%22148.00%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%2276.00%22%20cy%3D%22189.57%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22100.00%22%20cy%3D%22231.14%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%2276.00%22%20cy%3D%22106.43%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22100.00%22%20cy%3D%22148.00%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22124.00%22%20cy%3D%22189.57%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22148.00%22%20cy%3D%22231.14%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22100.00%22%20cy%3D%2264.86%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22124.00%22%20cy%3D%22106.43%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22148.00%22%20cy%3D%22148.00%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22172.00%22%20cy%3D%22189.57%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22196.00%22%20cy%3D%22231.14%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22148.00%22%20cy%3D%2264.86%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22172.00%22%20cy%3D%22106.43%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22196.00%22%20cy%3D%22148.00%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22220.00%22%20cy%3D%22189.57%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22196.00%22%20cy%3D%2264.86%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22220.00%22%20cy%3D%22106.43%22%20r%3D%2248%22%2F%3E%3Ccircle%20cx%3D%22244.00%22%20cy%3D%22148.00%22%20r%3D%2248%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%22148%22%20cy%3D%22148%22%20r%3D%22144%22%2F%3E%3Ccircle%20cx%3D%22148%22%20cy%3D%22148%22%20r%3D%22149.76%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") left -120px bottom -110px/340px 340px no-repeat}
-@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) body::before{opacity:.75}:root:not([data-theme="light"]) body::after{opacity:.75}}
-:root[data-theme="dark"] body::before{opacity:.75}:root[data-theme="dark"] body::after{opacity:.75}
 .wrap{position:relative;z-index:1}
 </style>
 </head>
