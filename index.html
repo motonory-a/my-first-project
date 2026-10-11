@@ -372,6 +372,13 @@ footer .copyurl{margin-bottom:6px}
 img.apa{width:72px;height:72px;object-fit:cover;object-position:50% 30%;display:block;background:#fff}
 img.apa{width:88px;height:88px;object-position:50% 50%}
 
+.yrtabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#fff;border:1px solid var(--line);border-radius:999px;padding:4px}
+.yrtabs button{appearance:none;border:0;background:transparent;border-radius:999px;padding:8px 6px;font:700 15px/1.2 var(--f-body);color:var(--muted);cursor:pointer;display:flex;justify-content:center;align-items:baseline;gap:6px}
+.yrtabs button b{font-size:13px;font-weight:600}
+.yrtabs button[aria-selected="true"]{background:linear-gradient(120deg,#C2456A,#E77C98);color:#fff;box-shadow:0 6px 14px -8px rgba(194,69,106,.9)}
+.yrpanel{display:flex;flex-direction:column;gap:12px}
+.yrpanel[hidden]{display:none}
+
 /* 背景:フラワーオブライフ(上部の連続模様に金の紋を重ね、下へ溶かす/左下にローズゴールドの紋) */
 body{position:relative;min-height:100vh}
 body::before{content:"";position:absolute;top:0;left:0;right:0;height:1100px;max-height:100%;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221800%22%20height%3D%221100%22%20viewBox%3D%220%200%201800%201100%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2230%22%20height%3D%2251.9615%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%239B86B5%22%20stroke-width%3D%22.7%22%20opacity%3D%22.2%22%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-30.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2260.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2275.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3C%2Fpattern%3E%3CclipPath%20id%3D%22k%22%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3C%2FclipPath%3E%3CradialGradient%20id%3D%22glow%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%221800%22%20height%3D%221100%22%20fill%3D%22url(%23p)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%22102%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C9A15A%22%20stroke-width%3D%221.1%22%20opacity%3D%22.55%22%3E%3Cg%20clip-path%3D%22url(%23k)%22%3E%3Ccircle%20cx%3D%22975.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221095.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2294.20%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top/1800px 1100px no-repeat;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%);mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%)}
@@ -1304,20 +1311,28 @@ function fortuneHTML(F){
           <a class="btn line" href="${shareSoulURL(SO)}" target="_blank" rel="noopener">LINEで友だちに送る</a></div></div>
     </section>
     <section class="fortune">
-    <div class="stack" style="gap:2px"><div class="latin">Your Star</div><h2>今年の運勢</h2>
+    <div class="stack" style="gap:2px"><div class="latin">Your Star</div><h2>今年と来年の運勢</h2>
       <p class="small muted">${F.honName}・ライフパス${F.lp}(${F.lpInfo[0]})</p></div>
-    <div class="fstrip">
+    ${(()=>{const F2=nextYearFortune(F); return `<div class="yrtabs" role="tablist">${[F,F2].map((x,i)=>`<button type="button" role="tab" data-yr="${i}" aria-selected="${i===0}">${i?"来年":"今年"}<b>${x.kigakuYear}年</b></button>`).join("")}</div>
+    <div class="yrpanel" data-yp="0">${yearPanelHTML(F,true)}</div><div class="yrpanel" data-yp="1" hidden>${yearPanelHTML(F2,false)}</div>`})()}
+    </section>`;
+}
+function nextYearFortune(F){ const G=fortune(F.birth,new Date(F.kigakuYear+1,2,15)); G.birth=F.birth; return G }
+function yearPanelHTML(F,isNow){
+  const Y=YEAR_READ[F.yearPal.k], L=STAR_LUCKY[F.hon], LD=luckyDays(F), W=isNow?"今年":"来年";
+  const colorChips=F.colors.map(c=>{const x=COLORS.find(z=>z[0]===c);return `<span class="lc"><span class="sw" style="background:${x[2]}"></span>${x[1]}</span>`}).join("");
+  return `<div class="fstrip">
       <div class="fkw"><small>${F.kigakuYear} KEYWORD</small><b>「${Y.kw}」</b></div>
       <div class="fst">${[0,1,2].map(i=>`<div><small>${CATS[i]}</small>${starsOf(Y.sc[i])}</div>`).join("")}</div>
       <div class="fcol"><small>LUCKY COLOR</small>${colorChips}</div>
     </div>
-    <details class="more"><summary>運勢をもっとくわしく見る</summary><div class="stack" style="margin-top:12px">
+    <details class="more"><summary>${W}の運勢をもっとくわしく見る</summary><div class="stack" style="margin-top:12px">
       <p class="kwcatch center">${Y.catch}</p>
       <p>${Y.text}</p>
-      <p class="small">数秘術でみると、今年は<mark>${F.pyInfo[0]}</mark>。${F.pyInfo[1]}です。</p>
+      <p class="small">数秘術でみると、${W}は<mark>${F.pyInfo[0]}</mark>。${F.pyInfo[1]}です。</p>
       <ul class="cats">${CATS.map((c,i)=>`<li><div class="ch"><b>${c}</b>${starsOf(Y.sc[i])}</div><p>${Y.cat[i]}</p></li>`).join("")}</ul>
-      <h3>これから3か月</h3>
-      <div class="months">${F.months.map((m,i)=>{const R=MONTH_READ[m.palace.k];return `<div class="month"><b>${m.label}</b><div><div class="ch"><em>${m.palace.theme}</em>${starsOf(R[0])}</div><p>${R[1]}</p>${i===0&&LD.days.length?`<p class="lday">ラッキーデー：${LD.days.map(d=>LD.month+"/"+d).join("・")}</p>`:""}</div></div>`}).join("")}</div>
+      ${isNow?`<h3>これから3か月</h3>
+      <div class="months">${F.months.map((m,i)=>{const R=MONTH_READ[m.palace.k];return `<div class="month"><b>${m.label}</b><div><div class="ch"><em>${m.palace.theme}</em>${starsOf(R[0])}</div><p>${R[1]}</p>${i===0&&LD.days.length?`<p class="lday">ラッキーデー：${LD.days.map(d=>LD.month+"/"+d).join("・")}</p>`:""}</div></div>`}).join("")}</div>`:""}
       <h3>ラッキーアイテム</h3>
       <div class="lucky">
         <div class="lk"><small>LUCKY ITEM</small><b>${L.item}</b></div>
@@ -1326,8 +1341,7 @@ function fortuneHTML(F){
         <div class="lk"><small>LUCKY NUMBER</small><b>${L.num}</b></div>
         <div class="lk wide"><small>LUCKY ACTION</small><b>${L.action}</b><b>${PY_ACTION[F.py]}</b></div></div>
       <div class="akki"><b>アッキーより</b><p>${F.honName}のあなたへ。${Y.msg}</p></div>
-      <p class="note">数秘術と九星気学をもとにした、お楽しみの読み解きです。</p></div></details>
-    </section>`;
+      <p class="note">数秘術と九星気学をもとにした、お楽しみの読み解きです。</p></div></details>`;
 }
 
 const PUBLIC_URL="https://motonory-a.github.io/my-first-project/";
@@ -1529,6 +1543,7 @@ function bindResult(){
   R.designs.forEach((x,i)=>{const c=app.querySelector(`canvas[data-th="${i}"]`); drawBracelet(c,x.d,1)});
   app.querySelectorAll(".tab").forEach(t=>t.onclick=()=>{S.sel=+t.dataset.t; app.querySelectorAll(".tab").forEach(z=>z.setAttribute("aria-selected",z===t)); $("detail").innerHTML=detailHTML(R.designs[S.sel]); bindDetail()});
   bindDetail();
+  app.querySelectorAll("[data-yr]").forEach(b=>b.onclick=()=>{const k=b.dataset.yr; app.querySelectorAll("[data-yr]").forEach(z=>z.setAttribute("aria-selected",z===b)); app.querySelectorAll("[data-yp]").forEach(p=>p.hidden=p.dataset.yp!==k)});
   $("toOrder").onclick=()=>go(1); $("ctago2").onclick=()=>go(1);
   if("IntersectionObserver" in window){ const bar=$("ctabar2"); let seen=false, ctaOn=false;
     const upd=()=>bar.classList.toggle("hide",!seen||ctaOn);
