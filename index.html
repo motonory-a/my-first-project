@@ -398,6 +398,28 @@ img.apa{width:88px;height:88px;object-position:50% 50%}
 .sbust::after{display:none}.sbust img{-webkit-mask-image:linear-gradient(#000 72%,transparent);mask-image:linear-gradient(#000 72%,transparent)}
 .zfull{display:block;width:100%;max-width:340px;height:auto;margin:10px auto 8px;border-radius:14px;box-shadow:0 10px 24px -14px rgba(80,40,60,.7)}
 
+.soul .zukan{margin-top:6px}
+.zukan>summary{display:flex;align-items:center;gap:12px;text-align:left;padding:12px 14px;border-radius:18px;border:1px solid #E3C27A;background:linear-gradient(120deg,#fffaf0,#fff 45%,#f8eef7);box-shadow:0 10px 22px -16px rgba(147,86,76,.8)}
+.zukan[open]>summary{background:linear-gradient(120deg,#fbf1dc,#fff 45%,#f3e6f2)}
+.zkth{display:flex;flex:0 0 auto}
+.zkth img{width:34px;height:34px;border-radius:50%;object-fit:cover;border:2px solid #fff;box-shadow:0 0 0 1px #E3C27A;margin-left:-12px;background:#fff}
+.zkth img:first-child{margin-left:0}
+.zkt{display:flex;flex-direction:column;flex:1;min-width:0;line-height:1.35}
+.zkt small{font-family:var(--f-script);font-size:19px;color:#C9993F;font-weight:400;letter-spacing:0}
+.zkt b{font-size:16.5px;color:var(--ink)}
+.zkt em{font-style:normal;font-size:12px;color:var(--muted);font-weight:500}
+.zkar{font-size:26px;color:#C9993F;transition:transform .2s}
+.zukan[open] .zkar{transform:rotate(90deg)}
+@media (max-width:360px){.zkth img:nth-child(n+4){display:none}}
+
+.zukan>summary{flex-direction:column;align-items:center;text-align:center;gap:6px;padding:14px 12px 13px}
+.zks{font-family:var(--f-script);font-size:22px;color:#C9993F;line-height:1}
+.zkth img{width:40px;height:40px;margin-left:-10px}
+.zkb{display:flex;align-items:center;gap:6px;font-size:17px;color:var(--ink);white-space:nowrap}
+.zkar{font-size:24px;line-height:1}
+.zke{font-style:normal;font-size:12.5px;color:var(--muted);font-weight:500}
+@media (max-width:360px){.zkth img{width:34px;height:34px}.zkth img:nth-child(n+4){display:block}}
+
 /* 背景:フラワーオブライフ(上部の連続模様に金の紋を重ね、下へ溶かす/左下にローズゴールドの紋) */
 body{position:relative;min-height:100vh}
 body::before{content:"";position:absolute;top:0;left:0;right:0;height:1100px;max-height:100%;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221800%22%20height%3D%221100%22%20viewBox%3D%220%200%201800%201100%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2230%22%20height%3D%2251.9615%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%239B86B5%22%20stroke-width%3D%22.7%22%20opacity%3D%22.2%22%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-30.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2260.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2275.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3C%2Fpattern%3E%3CclipPath%20id%3D%22k%22%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3C%2FclipPath%3E%3CradialGradient%20id%3D%22glow%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%221800%22%20height%3D%221100%22%20fill%3D%22url(%23p)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%22102%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C9A15A%22%20stroke-width%3D%221.1%22%20opacity%3D%22.55%22%3E%3Cg%20clip-path%3D%22url(%23k)%22%3E%3Ccircle%20cx%3D%22975.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221095.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2294.20%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top/1800px 1100px no-repeat;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%);mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%)}
@@ -1338,6 +1360,7 @@ function fortuneHTML0(F){
         <div class="matches">${M.map(x=>`<div class="mt" style="--sc:${EL_COLOR[x.b.el]}"><div class="mth">${soulImg(x.b,"sm")}<div class="mtn"><small>${x.b.g}</small><b>${x.b.name}</b></div><span>相性 ${x.s}%</span></div><p><em>こんな人：</em>${x.b.text.split("。").slice(1).join("。")}</p><small class="mtag">${x.b.stance}・守護石は${STONES[x.b.stone].name}</small></div>`).join("")}</div>
         <div class="sharebox"><b>友だちと魂の系統をくらべよう</b><p class="small">あなたの結果をLINEで送ると、受け取った人が鑑定したときに、あなたとの相性が表示されます。生年月日は送られません。</p>
           <a class="btn line" href="${shareSoulURL(SO)}" target="_blank" rel="noopener">LINEで友だちに送る</a></div></div>
+    ${zukanHTML(SO)}
     </section>
     <section class="fortune">
     <div class="stack" style="gap:2px"><div class="latin">Your Star</div><h2>今年と来年の運勢</h2>
@@ -1386,16 +1409,17 @@ function friendHTML(SO){
   return `<div class="pcard" style="--sc:${EL_COLOR[FRIEND.el]}">${soulImg(FRIEND,"md")}<small>リンクを送ってくれた人の魂の系統</small><b>${FRIEND.name}</b><span class="small">${FRIEND.g}・${FRIEND.stance}・${FRIEND.trait}</span>
     <div class="pscore"><span>あなたとの相性</span><b>${sc}%</b></div><p>${matchMessage(sc)}</p></div>`;
 }
+function zukanHTML(SO){return `      <details class="more zukan"><summary><small class="zks">Soul Encyclopedia</small><span class="zkth">${["プレアデス星人","ニギハヤヒ","大天使ミカエル","テロス人","アテナ","レオニン(獅子族)","ルシファー"].map(n=>`<img src="${SOUL_IMG[n]}" alt="" loading="lazy">`).join("")}</span><b class="zkb">魂の系統図鑑を見る<span class="zkar" aria-hidden="true">›</span></b><em class="zke">宇宙人・地底人・神様・天使・悪魔　全${SOULS.length}種</em></summary><div class="stack" style="margin-top:12px">
+        <p class="small muted">宇宙人・地底人・神様・天使・悪魔。伝承や神話、チャネリングで語られてきた存在たちです。<span class="akkimark inline">日記</span>はアッキーの「ニギハヤヒと俺日記」に登場する存在。</p>
+        ${SOUL_GROUPS.map(g=>`<h3 class="zg">${g}<small>${SOULS.filter(s=>s.g===g).length}種</small></h3>${g==="地底人種"?`<p class="note">インナーアース7種族は、アッキーの交信で語られる地底の一族です。出会った当初は地上の人に厳しい存在でしたが、今では7種族のうち6種族が「宇宙の進化」に協力しているそうです。</p>`:""}${g==="神様"?`<p class="note">七福神は7柱それぞれを、別々の魂の系統として収録しています。</p>`:""}<ul class="zl">${SOULS.filter(s=>s.g===g).map(s=>`<li class="${s===SO?"me":""}" style="--sc:${EL_COLOR[s.el]}"><details><summary>${soulImg(s,"xs")}<div><b>${s.name}</b>${s.akki?`<span class="akkimark inline">日記</span>`:""}${s===SO?`<span class="youmark">あなた</span>`:""}<small>${s.trait}</small></div><span class="sb" style="--b:${STANCE_COLOR[s.stance]}">${s.stance}</span></summary><div class="zd">${SOUL_FULL[s.name]?`<img class="zfull" src="${SOUL_FULL[s.name]}" alt="${s.name}のイラスト" loading="lazy" decoding="async">`:""}<p class="small"><b>分類：</b>${s.sub}(${s.el}の属性)<br><b>出身・伝承：</b>${s.origin}</p><p class="small">${s.text}</p><p class="small"><b>守護石：</b>${STONES[s.stone].name}</p></div></details></li>`).join("")}</ul>`).join("")}
+      </div></details>
+`;}
 function soulExtrasHTML(SO){
   return `<section class="soul" style="--sc:${EL_COLOR[SO.el]}"><div class="latin">More Fun</div><h2>魂の系統をもっと楽しむ</h2>
       <div class="pair stack"><h3>あの人の魂の系統と、二人の相性</h3>
         <p class="small muted">気になる人の生年月日を入れてみてください(どこにも保存されません)</p>
         <div class="row"><input type="date" id="pbd" aria-label="相手の生年月日" min="1920-01-01" max="2025-12-31"><button class="btn rose small" id="pgo" type="button">見る</button></div>
         <div id="pres" aria-live="polite"></div></div>
-      <details class="more zukan"><summary>魂の系統図鑑を見る(全${SOULS.length}種)</summary><div class="stack" style="margin-top:12px">
-        <p class="small muted">宇宙人・地底人・神様・天使・悪魔。伝承や神話、チャネリングで語られてきた存在たちです。<span class="akkimark inline">日記</span>はアッキーの「ニギハヤヒと俺日記」に登場する存在。</p>
-        ${SOUL_GROUPS.map(g=>`<h3 class="zg">${g}<small>${SOULS.filter(s=>s.g===g).length}種</small></h3>${g==="地底人種"?`<p class="note">インナーアース7種族は、アッキーの交信で語られる地底の一族です。出会った当初は地上の人に厳しい存在でしたが、今では7種族のうち6種族が「宇宙の進化」に協力しているそうです。</p>`:""}${g==="神様"?`<p class="note">七福神は7柱それぞれを、別々の魂の系統として収録しています。</p>`:""}<ul class="zl">${SOULS.filter(s=>s.g===g).map(s=>`<li class="${s===SO?"me":""}" style="--sc:${EL_COLOR[s.el]}"><details><summary>${soulImg(s,"xs")}<div><b>${s.name}</b>${s.akki?`<span class="akkimark inline">日記</span>`:""}${s===SO?`<span class="youmark">あなた</span>`:""}<small>${s.trait}</small></div><span class="sb" style="--b:${STANCE_COLOR[s.stance]}">${s.stance}</span></summary><div class="zd">${SOUL_FULL[s.name]?`<img class="zfull" src="${SOUL_FULL[s.name]}" alt="${s.name}のイラスト" loading="lazy" decoding="async">`:""}<p class="small"><b>分類：</b>${s.sub}(${s.el}の属性)<br><b>出身・伝承：</b>${s.origin}</p><p class="small">${s.text}</p><p class="small"><b>守護石：</b>${STONES[s.stone].name}</p></div></details></li>`).join("")}</ul>`).join("")}
-      </div></details>
     </section>`;
 }
 function resultHTML(){
