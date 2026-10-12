@@ -420,6 +420,24 @@ img.apa{width:88px;height:88px;object-position:50% 50%}
 .zke{font-style:normal;font-size:12.5px;color:var(--muted);font-weight:500}
 @media (max-width:360px){.zkth img{width:34px;height:34px}.zkth img:nth-child(n+4){display:block}}
 
+.morefun{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+.mfhead{display:flex;align-items:center;gap:10px;text-align:center}
+.mfhead .latin{font-size:26px;color:#C9993F}
+.mfhead h3{margin:0;font-size:17px;letter-spacing:.08em;white-space:nowrap}
+.mfline{flex:1;height:1px;background:linear-gradient(90deg,transparent,#E3C27A,transparent);position:relative}
+.mfline::after{content:"✦";position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);font-size:10px;color:#C9993F;background:transparent}
+.morefun .pair{background:#fff;border:1px solid var(--line);border-radius:18px;padding:14px}
+.pairt{font-size:16px;color:var(--ink)}
+.morefun .zukan{margin-top:0}
+
+.morefun{margin-top:18px}
+.mfhead{flex-direction:column;gap:2px}
+.mfrow{display:flex;align-items:center;gap:12px;width:100%}
+.mfline{background:linear-gradient(90deg,transparent,#E3C27A)}
+.mfline.r{background:linear-gradient(90deg,#E3C27A,transparent)}
+.mfline::after{left:auto;right:-4px}
+.mfline.r::after{right:auto;left:-4px}
+
 /* 背景:フラワーオブライフ(上部の連続模様に金の紋を重ね、下へ溶かす/左下にローズゴールドの紋) */
 body{position:relative;min-height:100vh}
 body::before{content:"";position:absolute;top:0;left:0;right:0;height:1100px;max-height:100%;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221800%22%20height%3D%221100%22%20viewBox%3D%220%200%201800%201100%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2230%22%20height%3D%2251.9615%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%239B86B5%22%20stroke-width%3D%22.7%22%20opacity%3D%22.2%22%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-30.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2260.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2275.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3C%2Fpattern%3E%3CclipPath%20id%3D%22k%22%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3C%2FclipPath%3E%3CradialGradient%20id%3D%22glow%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%221800%22%20height%3D%221100%22%20fill%3D%22url(%23p)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%22102%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C9A15A%22%20stroke-width%3D%221.1%22%20opacity%3D%22.55%22%3E%3Cg%20clip-path%3D%22url(%23k)%22%3E%3Ccircle%20cx%3D%22975.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221095.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2294.20%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top/1800px 1100px no-repeat;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%);mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%)}
@@ -1360,7 +1378,7 @@ function fortuneHTML0(F){
         <div class="matches">${M.map(x=>`<div class="mt" style="--sc:${EL_COLOR[x.b.el]}"><div class="mth">${soulImg(x.b,"sm")}<div class="mtn"><small>${x.b.g}</small><b>${x.b.name}</b></div><span>相性 ${x.s}%</span></div><p><em>こんな人：</em>${x.b.text.split("。").slice(1).join("。")}</p><small class="mtag">${x.b.stance}・守護石は${STONES[x.b.stone].name}</small></div>`).join("")}</div>
         <div class="sharebox"><b>友だちと魂の系統をくらべよう</b><p class="small">あなたの結果をLINEで送ると、受け取った人が鑑定したときに、あなたとの相性が表示されます。生年月日は送られません。</p>
           <a class="btn line" href="${shareSoulURL(SO)}" target="_blank" rel="noopener">LINEで友だちに送る</a></div></div>
-    ${zukanHTML(SO)}
+    ${soulExtrasHTML(SO)}
     </section>
     <section class="fortune">
     <div class="stack" style="gap:2px"><div class="latin">Your Star</div><h2>今年と来年の運勢</h2>
@@ -1415,12 +1433,14 @@ function zukanHTML(SO){return `      <details class="more zukan"><summary><small
       </div></details>
 `;}
 function soulExtrasHTML(SO){
-  return `<section class="soul" style="--sc:${EL_COLOR[SO.el]}"><div class="latin">More Fun</div><h2>魂の系統をもっと楽しむ</h2>
-      <div class="pair stack"><h3>あの人の魂の系統と、二人の相性</h3>
+  return `<div class="morefun">
+      <div class="mfhead"><div class="mfrow"><span class="mfline"></span><span class="latin">More Fun</span><span class="mfline r"></span></div><h3>魂の系統をもっと楽しむ</h3></div>
+      <div class="pair stack"><b class="pairt">あの人の魂の系統と、二人の相性</b>
         <p class="small muted">気になる人の生年月日を入れてみてください(どこにも保存されません)</p>
         <div class="row"><input type="date" id="pbd" aria-label="相手の生年月日" min="1920-01-01" max="2025-12-31"><button class="btn rose small" id="pgo" type="button">見る</button></div>
         <div id="pres" aria-live="polite"></div></div>
-    </section>`;
+      ${zukanHTML(SO)}
+    </div>`;
 }
 function resultHTML(){
   if(!S.result) S.result=makeDesigns();
@@ -1458,7 +1478,6 @@ function resultHTML(){
       <p class="ctnote">送るのは1分。気になったら、まずは気軽にどうぞ</p>
     </section>
     <div class="ctabar hide" id="ctabar2" aria-hidden="true"><button class="btn rose cta shine coral" id="ctago2" type="button" tabindex="-1">このデザインで相談する（無料）<span class="arr">›</span></button></div>
-    ${soulExtrasHTML(F.soul)}
     <button class="linkbtn" id="restart" type="button">最初からやり直す</button>${TEST_MODE?feedbackHTML():""}</div>`;
 }
 function detailHTML(D){
