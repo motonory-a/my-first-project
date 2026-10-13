@@ -1359,7 +1359,7 @@ function render(){
     `<input type="date" id="bd" class="big" value="${esc(S.birth)}" min="1920-01-01" max="2015-12-31" aria-label="生年月日">
     <div class="gsel"><b>性別</b><div class="seg" role="group" aria-label="性別">${[["f","女性"],["m","男性"],["x","答えない"]].map(g=>`<button type="button" data-g="${g[0]}" aria-pressed="${S.gender===g[0]}">${g[1]}</button>`).join("")}</div></div>
     <div class="linebox"><b>アッキーの公式LINEに友だち追加</b>
-      <a class="btn line" id="lineadd" href="${LINE_ADD}" target="_blank" rel="noopener">LINEで友だち追加する</a>
+      <a class="btn line" id="lineadd" data-track="line_add" href="${LINE_ADD}" target="_blank" rel="noopener">LINEで友だち追加する</a>
       <label class="check"><input type="checkbox" id="linedone"${S.lineDone?" checked":""}>友だち追加しました</label></div>
     <p class="note">生年月日はこのスマホの中だけに記憶され、次回から入力不要になります。</p><div class="err" id="err"></div>`,nextBtn(true,"鑑定をはじめる"));
   else if(cur.k==="theme"){const sel=THEMES.findIndex(t=>t.id===S.theme);
@@ -1582,7 +1582,7 @@ function orderHTML(){
     <img class="shareimg" id="shareimg" alt="ブレスレット完成図" hidden>
     <details><summary class="small muted" style="cursor:pointer">LINEが開かないときは(文章をコピーして送る)</summary>
       <div class="stack" style="margin-top:10px"><pre class="out" id="out"></pre><button class="btn ghost small" id="copy" type="button">文章をコピー</button>
-      <p class="note">公式LINE(${LINE_ID})のトーク画面に貼り付けて送ってください。<a href="${LINE_ADD}" target="_blank" rel="noopener">友だち追加はこちら</a></p></div></details>
+      <p class="note">公式LINE(${LINE_ID})のトーク画面に貼り付けて送ってください。<a href="${LINE_ADD}" data-track="line_add" target="_blank" rel="noopener">友だち追加はこちら</a></p></div></details>
     <div class="card stack"><div class="eyebrow">送ったあとの流れ</div><ol class="flowsteps">
       <li>アッキーからLINEでご連絡させていただきます。</li>
       <li>ビデオ通話の日時を決めます。（又は新宿サロンにご来店いただく日時を決めます）</li>
