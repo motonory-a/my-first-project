@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://motonory-a.github.io/my-first-project/sitemap.xml

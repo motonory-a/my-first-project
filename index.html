@@ -5,7 +5,6 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#B83A62">
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-CX2WH9VGQ5"></script>
 <script>
@@ -17,12 +16,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="color-scheme" content="light only">
 <meta name="theme-color" content="#FBF6F7">
-<meta name="description" content="生年月日といくつかの質問から、今のあなたに合う天然石を選び、ブレスレットを3つのデザインでご提案。数秘術と九星気学で近々の運勢も。高次元SHOPのオーダーメイド鑑定です。">
-<meta property="og:title" content="大開運！魂の系統で選ぶ天然石ブレスレット">
-<meta property="og:description" content="あなただけの天然石ブレスレットを3つのデザインでご提案。近々の運勢もわかる無料鑑定。">
+<meta name="description" content="あなたの魂はどこから来た？ オリオン、プレアデス、地底の一族、神様、天使…全94種から、生年月日であなたの魂の系統と今年の運勢を無料で鑑定。相性診断も。ピッタリの天然石でつくる、世界で一つのブレスレットをご提案します。">
+<link rel="canonical" href="https://motonory-a.github.io/my-first-project/">
+<meta property="og:site_name" content="大開運！魂の系統で選ぶ天然石ブレスレット">
+<meta property="og:title" content="大開運！魂の系統で選ぶ天然石ブレスレット｜全94種・無料鑑定">
+<meta property="og:description" content="あなたの魂はどこから来た？ 生年月日で魂の系統と今年の運勢を無料鑑定。友だちとの相性もわかります。">
+<meta property="og:url" content="https://motonory-a.github.io/my-first-project/">
+<meta property="og:image" content="https://motonory-a.github.io/my-first-project/og/main.jpg">
+<meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://motonory-a.github.io/my-first-project/og/main.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"大開運！魂の系統で選ぶ天然石ブレスレット","url":"https://motonory-a.github.io/my-first-project/","applicationCategory":"LifestyleApplication","description":"生年月日から全94種の魂の系統と今年の運勢を無料で鑑定し、ピッタリの天然石ブレスレットを提案します。","offers":{"@type":"Offer","price":"0","priceCurrency":"JPY"},"author":{"@type":"Person","name":"高次元ネゴシエイター アッキー"}}</script>
 <meta property="og:type" content="website">
 <style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
-<title>大開運！魂の系統で選ぶ天然石ブレスレット</title>
+<title>大開運！魂の系統で選ぶ天然石ブレスレット｜全94種・生年月日で無料鑑定</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Maru+Gothic:wght@400;500;700&family=Allura&family=Cormorant+Garamond:wght@500;600&display=swap">
@@ -478,6 +486,8 @@ img.apa{width:88px;height:88px;object-position:50% 50%}
 .hero.cover .lead{font-size:14px;padding:0;margin:0}
 @media (min-width:420px){.topsub .sp{display:none}}
 html,body{overflow-x:clip}
+
+.btn.xpost{background:#111;color:#fff;margin-top:8px;box-shadow:0 8px 18px -12px rgba(0,0,0,.7)}
 
 /* 背景:フラワーオブライフ(上部の連続模様に金の紋を重ね、下へ溶かす/左下にローズゴールドの紋) */
 body{position:relative;min-height:100vh}
@@ -1429,7 +1439,7 @@ function fortuneHTML0(F){
         <p class="small muted">あなたのまわりにも、こんな魂の人がいるかもしれません。思い当たる人はいますか？</p>
         <div class="matches">${M.map(x=>`<div class="mt" style="--sc:${EL_COLOR[x.b.el]}"><span class="mkind k-${x.kind}">${{best:"相性ぴったり",good:"心地よい仲間",spark:"刺激をくれる相手"}[x.kind]}</span><div class="mth">${soulImg(x.b,"sm")}<div class="mtn"><small>${x.b.g}</small><b>${x.b.name}</b></div><span>相性 ${x.s}%</span></div><p><em>こんな人：</em>${x.b.text.split("。").slice(1).join("。")}</p><small class="mtag">${x.b.stance}・守護石は${STONES[x.b.stone].name}</small></div>`).join("")}</div>
         <div class="sharebox"><b>友だちと魂の系統をくらべよう</b><p class="small">あなたの結果をLINEで送ると、受け取った人が鑑定したときに、あなたとの相性が表示されます。生年月日は送られません。</p>
-          <a class="btn line" data-track="share_friend" href="${shareSoulURL(SO)}" target="_blank" rel="noopener">LINEで友だちに送る</a></div></div>
+          <a class="btn line" data-track="share_friend" href="${shareSoulURL(SO)}" target="_blank" rel="noopener">LINEで友だちに送る</a><a class="btn xpost" data-track="share_x" href="${shareXURL(SO)}" target="_blank" rel="noopener">𝕏 でシェアする</a></div></div>
     ${soulExtrasHTML(SO)}
     </section>
     <section class="fortune">
@@ -1469,10 +1479,15 @@ function yearPanelHTML(F,isNow){
 const PUBLIC_URL="https://motonory-a.github.io/my-first-project/";
 const EL_PERSON={"光":"明るくて、まわりを自然と照らす人","水":"やさしくて、人の気持ちにすぐ気づく人","火":"情熱的で、思い立ったらすぐ動く人","風":"フットワークが軽く、話題が豊富な人","地":"穏やかで、どっしりと頼れる人","星":"不思議な魅力があって、直感が鋭い人"};
 const FRIEND=(()=>{const f=new URLSearchParams(location.search).get("f"); const i=f!=null&&/^\d+$/.test(f)?+f:-1; return SOULS[i]||null})();
+function shareBase(){return PUBLIC_URL}
+function sharePage(SO){return `${shareBase()}s/${String(SOULS.indexOf(SO)).padStart(2,"0")}.html`}
 function shareSoulURL(SO){
-  const base=/^https?:/.test(location.protocol)&&!/claude|usercontent/.test(location.host)?siteURL():PUBLIC_URL;
-  const t=`私の魂の系統は「${SO.name}」(${SO.g})でした！\nあなたの魂はどこから来た？ 生年月日で無料で鑑定できて、私との相性もわかるよ\n${base}?f=${SOULS.indexOf(SO)}`;
+  const t=`私の魂の系統は「${SO.name}」(${SO.g})でした！\nあなたの魂はどこから来た？ 生年月日で無料で鑑定できて、私との相性もわかるよ\n${sharePage(SO)}`;
   return "https://line.me/R/share?text="+encodeURIComponent(t);
+}
+function shareXURL(SO){
+  const t=`私の魂の系統は「${SO.name}」でした✨\n${SO.trait}\n\nあなたの魂はどこから来た？全94種から無料で鑑定👇\n#魂の系統診断 #大開運 #天然石`;
+  return "https://x.com/intent/post?text="+encodeURIComponent(t)+"&url="+encodeURIComponent(sharePage(SO));
 }
 function friendHTML(SO){
   const sc=soulMatch(SO,FRIEND);
