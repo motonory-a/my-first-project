@@ -1,0 +1,22 @@
+name: 作品ギャラリーの写真を自動で載せる
+on:
+  push:
+    paths: ['works/upload/**']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: works
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install pillow pillow-heif
+      - run: python works/process.py
+      - run: |
+          git config user.name "works-bot"
+          git config user.email "works-bot@users.noreply.github.com"
+          git add -A works
+          git diff --cached --quiet || (git commit -m "作品ギャラリーを更新" && git push)
