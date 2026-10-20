@@ -1518,8 +1518,11 @@ function shareBase(){return PUBLIC_URL}
 function sharePage(SO){return `${shareBase()}s/${String(SOULS.indexOf(SO)).padStart(2,"0")}.html`}
 function shareSoulURL(SO){
   const t=`私の魂の系統は「${SO.name}」(${SO.g})でした！\nあなたの魂はどこから来た？ 生年月日で無料で鑑定できて、私との相性もわかるよ\n${sharePage(SO)}`;
-  return "https://line.me/R/share?text="+encodeURIComponent(t);
+  // スマホはLINEアプリ、パソコンはLINE公式のWeb共有画面(ログインして友だちを選んで送れる)
+  if(IS_MOBILE) return "https://line.me/R/share?text="+encodeURIComponent(t);
+  return "https://social-plugins.line.me/lineit/share?url="+encodeURIComponent(sharePage(SO))+"&text="+encodeURIComponent(t.replace(/\n[^\n]*$/,""));
 }
+const IS_MOBILE=/iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent));
 function shareXURL(SO){
   const t=`私の魂の系統は「${SO.name}」でした✨\n${SO.trait}\n\nあなたの魂はどこから来た？全94種から無料で鑑定👇\n#魂の系統診断 #大開運 #天然石`;
   return "https://x.com/intent/post?text="+encodeURIComponent(t)+"&url="+encodeURIComponent(sharePage(SO));
