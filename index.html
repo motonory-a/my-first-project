@@ -1402,7 +1402,7 @@ function render(){
   else if(cur.k==="birth") h=qScreen(cur,"生年月日を教えてください","お名前やメールアドレスは必要ありません",
     `<input type="date" id="bd" class="big" value="${esc(S.birth)}" min="1920-01-01" max="2015-12-31" aria-label="生年月日">
     <div class="gsel"><b>性別</b><div class="seg" role="group" aria-label="性別">${[["f","女性"],["m","男性"],["x","答えない"]].map(g=>`<button type="button" data-g="${g[0]}" aria-pressed="${S.gender===g[0]}">${g[1]}</button>`).join("")}</div></div>
-    <div class="linebox"><b>アッキーの公式LINEに友だち追加</b><p class="perkline"><span>LINE登録特典</span>1万円以上のご注文で<em>3,000円引き</em></p>
+    <div class="linebox"><b>アッキーの公式LINEに友だち追加</b><p class="perkline"><span>LINE登録特典</span>1万円以上ご注文で<em>3,000円引き！</em></p>
       <a class="btn line" id="lineadd" data-track="line_add" href="${LINE_ADD}" target="_blank" rel="noopener">LINEで友だち追加する</a>
       <label class="check"><input type="checkbox" id="linedone"${S.lineDone?" checked":""}>友だち追加しました</label></div>
     <p class="note">生年月日はこのスマホの中だけに記憶され、次回から入力不要になります。</p><div class="err" id="err"></div>`,nextBtn(true,"鑑定をはじめる"));
@@ -1570,7 +1570,7 @@ function resultHTML(){
     <section class="works" id="works" hidden></section>
     <section class="perk" id="perk">
       <div class="perkhead"><span class="perkbadge">LINE登録特典</span></div>
-      <p class="perkmain">1万円以上のご注文で<br><b>3,000<small>円引き</small></b></p>
+      <p class="perkmain">1万円以上ご注文で<br><b>3,000<small>円引き！</small></b></p>
       <p class="perksub">アッキーの公式LINEに友だち登録した方限定。<br>ご注文の相談のときに「LINE特典を使います」とお伝えください。</p>
       <a class="btn line" data-track="line_add_perk" href="${LINE_ADD}" target="_blank" rel="noopener">LINE登録で特典を受け取る</a>
     </section>
@@ -1682,7 +1682,7 @@ function orderText(){
     `■ご希望の価格帯:${BUDGETS[S.budget]}`,
     `■生年月日:${S.birth}(${F.honName}/ライフパス${F.lp})`, S.gender==="f"?"■性別:女性":S.gender==="m"?"■性別:男性":"",
     `■テーマ:${theme}${first?"(" + first + ")":""}`,
-    `■ご要望:${S.note||"なし"}`, link?`■完成図:${link}`:"", "■LINE登録特典(1万円以上で3,000円引き)を利用します"].filter(Boolean).join("\n");
+    `■ご要望:${S.note||"なし"}`, link?`■完成図:${link}`:"", "■LINE登録特典(1万円以上ご注文で3,000円引き！)を利用します"].filter(Boolean).join("\n");
 }
 function lineURL(text){return `https://line.me/R/oaMessage/${LINE_ID}/?${encodeURIComponent(text)}`}
 
