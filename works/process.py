@@ -1,6 +1,12 @@
 # 作品ギャラリー: works/upload/ に置かれた写真を、軽い画像に変換して works.json に追加する
 import json, os, re, hashlib, datetime
-from PIL import Image, ImageOps
+from PIL import Image, ImageOps, ImageEnhance
+import numpy as np
+def enh(im):
+    # 明るめの発色に整える(中間調を持ち上げ、少し鮮やかに)
+    a=np.asarray(im).astype(float)/255; im=Image.fromarray(((a**0.85)*255).clip(0,255).astype('uint8'))
+    im=ImageEnhance.Brightness(im).enhance(1.04); im=ImageEnhance.Contrast(im).enhance(1.06)
+    return ImageEnhance.Color(im).enhance(1.15)
 try:
     import pillow_heif; pillow_heif.register_heif_opener()
 except Exception: pass
@@ -16,7 +22,7 @@ for fn in sorted(os.listdir(UP)):
     p=os.path.join(UP,fn)
     if fn.startswith('.') or not os.path.isfile(p): continue
     try:
-        im=ImageOps.exif_transpose(Image.open(p)).convert('RGB')
+        im=enh(ImageOps.exif_transpose(Image.open(p)).convert('RGB'))
     except Exception as e:
         print('skip',fn,e); continue
     h=hashlib.sha1(open(p,'rb').read()).hexdigest()[:10]
