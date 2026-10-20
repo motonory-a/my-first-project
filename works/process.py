@@ -6,7 +6,14 @@ def enh(im):
     # 明るめの発色に整える(中間調を持ち上げ、少し鮮やかに)
     a=np.asarray(im).astype(float)/255; im=Image.fromarray(((a**0.85)*255).clip(0,255).astype('uint8'))
     im=ImageEnhance.Brightness(im).enhance(1.04); im=ImageEnhance.Contrast(im).enhance(1.06)
-    return ImageEnhance.Color(im).enhance(1.15)
+    im=ImageEnhance.Color(im).enhance(1.15)
+    # 作品集全体の明るさをそろえる(中央値の明るさを0.84に合わせる)
+    import math
+    m=float(np.median(np.asarray(im.convert('L').resize((256,256))).astype(float)/255))
+    if 0.02<m<0.98:
+        g=min(max(math.log(0.843)/math.log(m),0.6),1.6)
+        im=Image.fromarray(((np.asarray(im).astype(float)/255)**g*255).clip(0,255).astype('uint8'))
+    return im
 try:
     import pillow_heif; pillow_heif.register_heif_opener()
 except Exception: pass
