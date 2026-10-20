@@ -1815,7 +1815,7 @@ function loadWorks(){ if(WORKS) return Promise.resolve(WORKS);
 function fillWorks(){ loadWorks().then(W=>{ const el=$("works"); if(!el||!W.length) return;
   let loop=[]; while(loop.length<10) loop=loop.concat(W.map((w,i)=>i));
   const item=i=>{const w=W[i]; return `<button type="button" class="fm" data-wk="${i}" aria-label="${esc(w.title||"作品")}を拡大"><img src="${w.thumb}" alt="${esc(w.title||"オーダーメイドの天然石ブレスレット")}" loading="lazy" decoding="async">${w.title?`<span>${esc(w.title)}</span>`:""}</button>`};
-  el.innerHTML=`<div class="wkhead"><div class="latin">Gallery</div><h2>アッキーが作ったブレスレット</h2><p class="small muted">これまでにオーダーメイドでお作りした作品です。<br>タップすると大きく見られます。</p></div>
+  el.innerHTML=`<div class="wkhead"><div class="latin">Gallery</div><h2>『魂の系統ブレスレット』作品集</h2><p class="small muted">これまでにオーダーメイドでお作りした作品です。<br>タップすると大きく見られます。</p></div>
     <div class="film" style="--n:${loop.length}"><div class="filmtrack">${loop.map(item).join("")}${loop.map(item).join("").replace(/<button /g,'<button tabindex="-1" aria-hidden="true" ')}</div></div>
     <button type="button" class="linkbtn wkmore" id="wkmore">${WORKS_ALL?"一覧を閉じる":`すべての作品を見る（${W.length}点）`}</button>
     ${WORKS_ALL?`<div class="wkgrid">${W.map((w,i)=>`<button type="button" class="wk" data-wk="${i}"><img src="${w.thumb}" alt="" loading="lazy">${w.title?`<span>${esc(w.title)}</span>`:""}</button>`).join("")}</div>`:""}`;
