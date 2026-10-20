@@ -523,6 +523,16 @@ html,body{overflow-x:clip}
 @media (prefers-reduced-motion:reduce){.filmtrack{animation:none}.film{overflow-x:auto}}
 .works .wkgrid{margin-top:2px}
 
+/* LINE登録特典 */
+.perkline{margin:0;font-size:13px;color:var(--ink)}.perkline span{display:inline-block;margin-right:6px;padding:1px 8px;border-radius:99px;background:#06C755;color:#fff;font-size:11px;font-weight:700}.perkline em{font-style:normal;font-weight:700;color:#C2456A}
+.perk{position:relative;text-align:center;padding:20px 18px 18px;border-radius:22px;background:linear-gradient(160deg,#FFF8EC,#FDEFF3);border:1.5px dashed #E3B76A;box-shadow:0 14px 30px -20px rgba(162,100,90,.7)}
+.perkbadge{display:inline-block;padding:4px 14px;border-radius:99px;background:#06C755;color:#fff;font-size:12.5px;font-weight:700;letter-spacing:.08em}
+.perkmain{margin:10px 0 4px;font-family:var(--f-display);font-weight:600;font-size:17px;line-height:1.4;color:var(--ink)}
+.perkmain b{display:inline-block;font-size:44px;line-height:1.1;letter-spacing:.02em;background:linear-gradient(120deg,#C2456A,#E77C98 50%,#C2456A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.perkmain b small{font-size:20px}
+.perksub{margin:0 0 14px;font-size:12px;line-height:1.75;color:var(--muted)}
+.perk .btn{margin:0}
+
 /* 背景:フラワーオブライフ(上部の連続模様に金の紋を重ね、下へ溶かす/左下にローズゴールドの紋) */
 body{position:relative;min-height:100vh}
 body::before{content:"";position:absolute;top:0;left:0;right:0;height:1100px;max-height:100%;pointer-events:none;z-index:0;background:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%221800%22%20height%3D%221100%22%20viewBox%3D%220%200%201800%201100%22%3E%3Cdefs%3E%3Cpattern%20id%3D%22p%22%20width%3D%2230%22%20height%3D%2251.9615%22%20patternUnits%3D%22userSpaceOnUse%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C9993F%22%20stroke-width%3D%22.7%22%20opacity%3D%22.15%22%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%22-25.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-30.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2260.000%22%20cy%3D%220.000%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22-15.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2215.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2245.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2275.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%220.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%2230.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3C%2Fpattern%3E%3CclipPath%20id%3D%22k%22%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3C%2FclipPath%3E%3CradialGradient%20id%3D%22glow%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%22.55%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%23fff%22%20stop-opacity%3D%220%22%2F%3E%3C%2FradialGradient%3E%3C%2Fdefs%3E%0A%20%20%3Crect%20width%3D%221800%22%20height%3D%221100%22%20fill%3D%22url(%23p)%22%2F%3E%0A%20%20%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%22102%22%20fill%3D%22url(%23glow)%22%2F%3E%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%23C9A15A%22%20stroke-width%3D%221.1%22%20opacity%3D%22.55%22%3E%3Cg%20clip-path%3D%22url(%23k)%22%3E%3Ccircle%20cx%3D%22975.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%22990.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221005.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221020.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%22129.904%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221035.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221050.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%22103.923%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221065.000%22%20cy%3D%2225.981%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221080.000%22%20cy%3D%2251.962%22%20r%3D%2230%22%2F%3E%3Ccircle%20cx%3D%221095.000%22%20cy%3D%2277.942%22%20r%3D%2230%22%2F%3E%3C%2Fg%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2290%22%2F%3E%3Ccircle%20cx%3D%221035%22%20cy%3D%2277.942%22%20r%3D%2294.20%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center top/1800px 1100px no-repeat;-webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%);mask-image:linear-gradient(to bottom,#000 0%,#000 30%,rgba(0,0,0,.4) 52%,transparent 72%)}
@@ -1392,7 +1402,7 @@ function render(){
   else if(cur.k==="birth") h=qScreen(cur,"生年月日を教えてください","お名前やメールアドレスは必要ありません",
     `<input type="date" id="bd" class="big" value="${esc(S.birth)}" min="1920-01-01" max="2015-12-31" aria-label="生年月日">
     <div class="gsel"><b>性別</b><div class="seg" role="group" aria-label="性別">${[["f","女性"],["m","男性"],["x","答えない"]].map(g=>`<button type="button" data-g="${g[0]}" aria-pressed="${S.gender===g[0]}">${g[1]}</button>`).join("")}</div></div>
-    <div class="linebox"><b>アッキーの公式LINEに友だち追加</b>
+    <div class="linebox"><b>アッキーの公式LINEに友だち追加</b><p class="perkline"><span>LINE登録特典</span>1万円以上のご注文で<em>3,000円引き</em></p>
       <a class="btn line" id="lineadd" data-track="line_add" href="${LINE_ADD}" target="_blank" rel="noopener">LINEで友だち追加する</a>
       <label class="check"><input type="checkbox" id="linedone"${S.lineDone?" checked":""}>友だち追加しました</label></div>
     <p class="note">生年月日はこのスマホの中だけに記憶され、次回から入力不要になります。</p><div class="err" id="err"></div>`,nextBtn(true,"鑑定をはじめる"));
@@ -1558,6 +1568,12 @@ function resultHTML(){
       <div class="tabs" role="tablist">${designs.map((x,i)=>`<button class="tab" role="tab" type="button" data-t="${i}" aria-selected="${i===S.sel}"><canvas data-th="${i}" aria-hidden="true"></canvas>${x.mode.name}<small>DESIGN ${i+1}</small></button>`).join("")}</div>
       <div class="stack" id="detail">${detailHTML(D)}</div></section>
     <section class="works" id="works" hidden></section>
+    <section class="perk" id="perk">
+      <div class="perkhead"><span class="perkbadge">LINE登録特典</span></div>
+      <p class="perkmain">1万円以上のご注文で<br><b>3,000<small>円引き</small></b></p>
+      <p class="perksub">アッキーの公式LINEに友だち登録した方限定。<br>ご注文の相談のときに「LINE特典を使います」とお伝えください。</p>
+      <a class="btn line" data-track="line_add_perk" href="${LINE_ADD}" target="_blank" rel="noopener">LINE登録で特典を受け取る</a>
+    </section>
     <section class="ctacard" id="ctacard">
       <div class="ctthumb"><canvas id="ctcv" aria-hidden="true"></canvas></div>
       <p class="cteye">世界にひとつの、あなたのブレスレット</p>
@@ -1666,7 +1682,7 @@ function orderText(){
     `■ご希望の価格帯:${BUDGETS[S.budget]}`,
     `■生年月日:${S.birth}(${F.honName}/ライフパス${F.lp})`, S.gender==="f"?"■性別:女性":S.gender==="m"?"■性別:男性":"",
     `■テーマ:${theme}${first?"(" + first + ")":""}`,
-    `■ご要望:${S.note||"なし"}`, link?`■完成図:${link}`:""].filter(Boolean).join("\n");
+    `■ご要望:${S.note||"なし"}`, link?`■完成図:${link}`:"", "■LINE登録特典(1万円以上で3,000円引き)を利用します"].filter(Boolean).join("\n");
 }
 function lineURL(text){return `https://line.me/R/oaMessage/${LINE_ID}/?${encodeURIComponent(text)}`}
 
