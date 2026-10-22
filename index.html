@@ -1385,7 +1385,7 @@ function header(cur){
 function optsHTML(list,sel){const two=list.length>6; return `<div class="opts${two?" two":""}${list.length>12?" many":""}">${list.map((l,i)=>`<button type="button" class="opt" data-i="${i}" aria-pressed="${sel===i}"><span class="mk"></span><span>${esc(l)}</span></button>`).join("")}</div>`}
 const nextBtn=(ok,label="次へ")=>`<button class="btn rose" id="next" type="button"${ok?"":" disabled"}>${label}</button>`;
 const tapHint=(has)=>has?nextBtn(true):`<p class="taphint">えらぶと、次へ進みます</p>`;
-const footer=()=>`<footer><div><button type="button" class="copyurl" data-copyurl>🔗 このサイトのリンクをコピー</button></div><div>運営:<a href="${SHOP_URL}" target="_blank" rel="noopener">高次元SHOP</a>(アッキーの天然石ブレスレット屋さん)</div><div><a href="${LAW_URL}" target="_blank" rel="noopener">特定商取引法に基づく表記</a></div></footer>`;
+const footer=()=>`<footer><div><button type="button" class="copyurl" data-copyurl>🔗 このサイトのリンクをコピー</button></div><div>運営:<a href="${SHOP_URL}" target="_blank" rel="noopener">高次元SHOP</a>(アッキーの天然石ブレスレット屋さん)</div><div><a href="${LAW_URL}" target="_blank" rel="noopener">特定商取引法に基づく表記</a>　<a href="privacy/">プライバシーについて</a></div></footer>`;
 // 1画面に収まる質問レイアウト(次へボタンは下に固定)
 const qScreen=(cur,title,sub,body,bar)=>`<div class="q">${header(cur)}<div class="qbody"><h2 class="qt">${title}</h2>${sub?`<p class="qs">${sub}</p>`:""}${body}</div><div class="qbar">${bar}</div></div>`;
 // 生年月日などをこのスマホに記憶(次回からワンタップ)
@@ -1809,6 +1809,7 @@ function viewShared(){
   drawBracelet($("br"),r.d); app.querySelectorAll("canvas[data-bead]").forEach(c=>drawSingle(c,c.dataset.bead));
   return true;
 }
+if(new URLSearchParams(location.search).get("start")==="1"){S.step=1; track("lp_to_kantei");}
 if(!viewShared()) render();
 
 /* ---------- サイトのリンクをコピー ---------- */
