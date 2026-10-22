@@ -40,9 +40,13 @@ h2{text-align:center;font-size:22px;color:#6E2E5E;margin-top:2px}
 .who{display:grid;gap:10px;margin-top:16px}
 .who div{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px;font-size:15px}
 .who i{font-style:normal;flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#FBE6E1;color:var(--pink);font-size:15px}
-.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
-.gal button{padding:0;border:0;border-radius:12px;overflow:hidden;aspect-ratio:1;background:#F3E6EA;cursor:pointer}
+.galbox{position:relative;margin:0 -6px;padding:26px 14px 20px;border-radius:28px;background:radial-gradient(420px 260px at 85% 0%,#FBD9E4,transparent 70%),radial-gradient(380px 260px at 0% 100%,#FDE9D2,transparent 70%),linear-gradient(160deg,#FFF5F8,#FFF8EE);box-shadow:0 0 0 1px #F3D9C9 inset,0 22px 40px -26px rgba(194,69,106,.55)}
+.galbox .sp{position:absolute;color:#E3B76A;text-shadow:0 0 10px #F7D58A;font-size:18px;line-height:1}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.gal button{position:relative;padding:0;border:3px solid #fff;border-radius:16px;overflow:hidden;aspect-ratio:1;background:#F3E6EA;cursor:pointer;box-shadow:0 0 0 1px #EBCB97,0 10px 20px -12px rgba(150,70,90,.6)}
+.gal button:first-child{grid-column:span 2;grid-row:span 2}
 .gal img{width:100%;height:100%;object-fit:cover}
+.gal button:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.35),transparent 40%);pointer-events:none}
 .steps{counter-reset:s;list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
 .steps li{counter-increment:s;position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px 14px 12px 58px;font-size:14.5px}
 .steps li:before{content:counter(s);position:absolute;left:14px;top:50%;transform:translateY(-50%);width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(120deg,#B5786B,#E2B2A4);color:#fff;font-weight:700}
@@ -86,8 +90,9 @@ body::after{content:"";position:absolute;left:0;right:0;bottom:0;height:420px;po
 <section><div class="latin">For You</div><h2>こんな方にぴったりです</h2>
 <div class="who"><div><i>✦</i>自分に合う石が分からない</div><div><i>✦</i>既製品ではなく、自分だけのものが欲しい</div><div><i>✦</i>大切な人への贈り物を探している</div></div></section>
 
-<section id="works" hidden><div class="latin">Gallery</div><h2>開運ブレスレット</h2>
-<p class="lead">これまでにオーダーメイドでお作りした作品です。</p><div class="gal" id="gal"></div></section>
+<section id="works"><div class="galbox"><span class="sp" style="left:18px;top:16px">✦</span><span class="sp" style="right:22px;top:30px;font-size:13px">✦</span><span class="sp" style="right:16px;bottom:14px">✦</span>
+<div class="latin">Gallery</div><h2>開運ブレスレット</h2>
+<p class="lead">これまでにオーダーメイドで<br>お作りした作品です。タップで拡大できます。</p><div class="gal" id="gal"></div></div></section>
 
 <section><div class="latin">How to Order</div><h2>ご注文までの流れ</h2>
 <ol class="steps"><li><b>無料の魂の系統鑑定</b>生年月日といくつかの質問で、あなたの魂の系統と今年の運勢を鑑定します。</li>
@@ -119,12 +124,9 @@ function track(n,p){try{if(window.gtag)gtag("event",n,p||{})}catch(e){}}
 document.addEventListener("click",function(e){var a=e.target.closest("[data-ev]");if(a)track(a.dataset.ev)});
 var fv=document.getElementById("fvcta"),st=document.getElementById("sticky");
 if("IntersectionObserver" in window)new IntersectionObserver(function(es){st.classList.toggle("on",!es[0].isIntersecting&&es[0].boundingClientRect.top<0)}).observe(fv);
-fetch("../works/works.json",{cache:"no-store"}).then(function(r){return r.ok?r.json():[]}).then(function(W){
- if(!W||!W.length)return;W=W.slice();for(var i=W.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=W[i];W[i]=W[j];W[j]=t}
- var g=document.getElementById("gal"),d=document.getElementById("dlg");
- W.slice(0,6).forEach(function(w){var b=document.createElement("button");b.type="button";b.innerHTML='<img src="../'+w.thumb+'" alt="オーダーメイドの天然石ブレスレット" loading="lazy">';
-  b.onclick=function(){document.getElementById("dlgimg").src="../"+w.img;d.showModal();track("lp_works_open")};g.appendChild(b)});
- document.getElementById("works").hidden=false;
- d.addEventListener("click",function(e){if(e.target===d)d.close()});
-}).catch(function(){});
+var PICK=["c679a15731", "c599d797ff", "b933f63fe8", "16115e64f8", "f379454544", "204cb79d67"];
+(function(){var g=document.getElementById("gal"),d=document.getElementById("dlg");
+ PICK.forEach(function(h,i){var b=document.createElement("button");b.type="button";b.innerHTML='<img src="../works/img/'+h+(i===0?'.webp':'_t.webp')+'" alt="オーダーメイドの天然石ブレスレット" loading="lazy">';
+  b.onclick=function(){document.getElementById("dlgimg").src="../works/img/"+h+".webp";d.showModal();track("lp_works_open")};g.appendChild(b)});
+ d.addEventListener("click",function(e){if(e.target===d)d.close()});})();
 </script></body></html>
