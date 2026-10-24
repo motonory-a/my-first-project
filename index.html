@@ -555,7 +555,7 @@ const STONES = {
   rutile:{name:"ルチルクォーツ",colors:["gold","clear"],base:"#F3EEDD",tex:"rutile",featured:true,
     tags:{money:3,work:3,action:2,chance:2,confidence:2,decision:1},
     meaning:"水晶の中に金色の針状の結晶が入った石で、古くから「チャンスをつかむ」「仕事や目標に向かう」人の石として選ばれてきました。当店では針の密度や透明感にこだわった高品質なものをそろえています。"},
-  hokuto:{name:"北投石",colors:["brown"],base:"#8C8378",tex:"matte",featured:true,
+  hokuto:{name:"北投石",colors:["brown"],base:"#7E6340",tex:"hokuto",featured:true,
     tags:{health:3,daily:2,relax:2,calm:1,hokuto:5},
     meaning:"台湾の北投温泉と秋田の玉川温泉でしか採れない希少な石です。健やかな毎日を意識するきっかけとして、日常的に身につける方が多い石です。"},
   citrine:{name:"シトリン",colors:["yellow","gold"],base:"#E9C25A",tex:"glass",
@@ -709,7 +709,7 @@ const LOOK = {
   himalaya:{kind:"clear",tint:"#E6EEF4",k:.08,incl:"wisp"},
   crystal:{kind:"clear",tint:"#F2F6F8",k:.06,incl:"wisp"},
   rutile:{kind:"clear",tint:"#F4E7C6",k:.12,incl:"rutile"},
-  hokuto:{kind:"opaque",color:"#7D766D",gloss:.22,tex:"speckle"},
+  hokuto:{kind:"opaque",color:"#7E6340",gloss:.42,tex:"hokuto"},
   citrine:{kind:"clear",tint:"#EDB23C",k:.5},
   tiger:{kind:"opaque",color:"#7E5220",gloss:.85,tex:"tiger"},
   onyx:{kind:"opaque",color:"#101115",gloss:1},
@@ -871,6 +871,8 @@ function drawBead(ctx,x,y,r,id,rand,ang){
       const g=ctx.createLinearGradient(0,o-r*.45,0,o+r*.45); g.addColorStop(0,"rgba(255,206,120,0)"); g.addColorStop(.5,"rgba(255,214,140,.6)"); g.addColorStop(1,"rgba(255,206,120,0)");
       ctx.fillStyle=g; ctx.fillRect(-r,o-r*.45,2*r,r*.9); ctx.restore();
     }
+    if(t==="hokuto"){ for(let i=0;i<4;i++) blob(ctx,x+(rand()-.5)*r*1.5,y+(rand()-.5)*r*1.5,r*(.35+rand()*.35),rand()>.5?"#987A50":"#5C4428",.28);
+      for(let i=0;i<120;i++){ const a=rand()*6.28, d=Math.sqrt(rand())*r*.95, px=x+Math.cos(a)*d, py=y+Math.sin(a)*d, s=r*(.014+rand()*.03); ctx.fillStyle=rand()>.25?"rgba(28,20,14,.85)":"rgba(60,44,30,.7)"; ctx.beginPath(); ctx.ellipse(px,py,s,s*(.5+rand()*.6),rand()*3.14,0,6.28); ctx.fill(); } }
     if(t==="speckle"){
       for(let i=0;i<3;i++) blob(ctx,x+(rand()-.5)*r*1.4,y+(rand()-.5)*r*1.4,r*(.35+rand()*.3),rand()>.5?"#8C6E50":"#5E5A55",.25);
       for(let i=0;i<90;i++){ ctx.fillStyle=rand()>.5?"rgba(255,255,255,.07)":"rgba(0,0,0,.1)"; ctx.beginPath(); ctx.arc(x+(rand()-.5)*r*2,y+(rand()-.5)*r*2,r*(.01+rand()*.025),0,6.28); ctx.fill(); }
