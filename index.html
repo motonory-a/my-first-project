@@ -1429,7 +1429,7 @@ function render(){
   else if(cur.k==="vibes") h=qScreen(cur,"好きな雰囲気は？","近いものを3つまで",
       `<div class="chips">${Object.keys(VIBES).map(x=>`<button type="button" class="chip" data-v="${x}" aria-pressed="${S.vibes.includes(x)}">${x}</button>`).join("")}</div>`,nextBtn(true));
   else if(cur.k==="liked") h=qScreen(cur,"気になる石はありますか？","名前を知らなくて大丈夫。<b>見た目</b>で選んでください（いくつでも）",
-      `<div class="sgrid">${LIKED.map(x=>`<button type="button" class="sc" data-l="${x}" aria-pressed="${S.liked.includes(x)}"><canvas data-bead="${LIKED_ID[x]}" width="120" height="120" aria-hidden="true"></canvas><b>${x}</b><small>${STONE_KW[LIKED_ID[x]]||""}</small></button>`).join("")}<button type="button" class="sc any" data-l="特にない" aria-pressed="${S.liked.includes("特にない")}"><span aria-hidden="true">✦</span><b>おまかせ</b><small>アッキーに任せる</small></button></div>`,nextBtn(true));
+      `<div class="sgrid">${LIKED.map(x=>`<button type="button" class="sc" data-l="${x}" aria-pressed="${S.liked.includes(x)}"><canvas data-bead="${LIKED_ID[x]}" width="120" height="120" aria-hidden="true"></canvas><b>${x}</b><small>${STONE_KW[LIKED_ID[x]]||""}</small></button>`).join("")}<button type="button" class="sc any" data-l="特にない" aria-pressed="${S.liked.includes("特にない")}"><span aria-hidden="true">✦</span><b>おまかせ</b><small>開運鑑定に任せる</small></button></div>`,nextBtn(true));
   else if(cur.k==="budget") h=qScreen(cur,"ご希望の価格帯は？","最終的なお値段は、ビデオ通話で実物を見ながら決めます",optsHTML(BUDGETS,S.budget),tapHint(S.budget!=null));
   else if(cur.k==="free") h=qScreen(cur,"伝えておきたいことは？","空欄でも大丈夫です",
       `<textarea id="fr" placeholder="例:仕事中も着けられるものが欲しいです">${esc(S.free)}</textarea>`,nextBtn(true,"結果を見る"));
