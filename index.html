@@ -1401,7 +1401,7 @@ function flow(){
   f.push({k:"likeColors",q:1},{k:"avoidColors",q:1},{k:"vibes",q:1},{k:"liked",q:1},{k:"budget",q:1},{k:"free",q:1},{k:"result"},{k:"order"});
   return f;
 }
-function go(delta){const f=flow(); S.step=Math.max(0,Math.min(f.length-1,S.step+delta)); render(); try{const k=f[S.step].k; if(k==="birth")track("kantei_start"); if(k==="result")track("kantei_complete",{soul:S.result&&S.result.F.soul.name,gender:S.gender||"none"}); if(k==="order")track("consult_open",{design:S.result.designs[S.sel].mode.name});}catch(e){} window.scrollTo({top:0})}
+function go(delta){const f=flow(); S.step=Math.max(0,Math.min(f.length-1,S.step+delta)); render(); try{const k=f[S.step].k; if(delta>0){const n=f.slice(0,S.step+1).filter(x=>x.q).length; track("ks_"+(n<10?"0":"")+n+"_"+k+(k==="branch"?f[S.step].idx:""));} if(k==="birth")track("kantei_start"); if(k==="result")track("kantei_complete",{soul:S.result&&S.result.F.soul.name,gender:S.gender||"none"}); if(k==="order")track("consult_open",{design:S.result.designs[S.sel].mode.name});}catch(e){} window.scrollTo({top:0})}
 function header(cur){
   const f=flow(); const qs=f.filter(x=>x.q); const i=f.slice(0,S.step+1).filter(x=>x.q).length;
   return `<div class="qhead"><button class="back" id="back" type="button">← 戻る</button><div class="progress"><i style="width:${i/qs.length*100}%"></i></div><span>${i}/${qs.length}</span></div>`;
