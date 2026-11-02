@@ -523,6 +523,21 @@ html,body{overflow-x:clip}
 @media (prefers-reduced-motion:reduce){.filmtrack{animation:none}.film{overflow-x:auto}}
 .works .wkgrid{margin-top:2px}
 
+/* 詳しい鑑定 */
+.deep{margin-top:8px}
+.deepwrap{position:relative;margin-top:14px}
+.deepwrap.locked .deepbody{max-height:520px;overflow:hidden;filter:blur(5px);pointer-events:none;user-select:none;-webkit-user-select:none}
+.deeplock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(rgba(251,246,247,.15),rgba(251,246,247,.85) 40%)}
+.dlbox{width:100%;max-width:420px;text-align:center;background:#fff;border:1.5px solid #E3B76A;border-radius:20px;padding:20px 18px;box-shadow:0 16px 34px -18px rgba(150,70,90,.6)}
+.dlbox>b{display:block;font-size:18px;font-family:var(--f-display);color:var(--ink)}
+.dlbox>p{font-size:14px;color:var(--muted);margin:8px 0 14px}
+.linkbtn{margin-top:10px;background:none;border:0;color:var(--muted);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
+.dcard{background:#fff;border:1px solid #ECDDE6;border-radius:18px;padding:16px}
+.dcard h3{font-size:15.5px;margin:14px 0 2px}
+.dcard p{margin:6px 0 0}
+.dhead small{display:inline-block;padding:2px 10px;border-radius:99px;background:#FBE6E1;color:#C2456A;font-size:12px;font-weight:700}
+.dhead b{display:block;font-family:var(--f-display);font-size:19px;margin-top:6px;line-height:1.4}
+
 /* LINE登録特典 */
 .perkline{margin:0;font-size:13px;color:var(--ink)}.perkline span{display:inline-block;margin-right:6px;padding:1px 8px;border-radius:99px;background:#06C755;color:#fff;font-size:11px;font-weight:700}.perkline em{font-style:normal;font-weight:700;color:#C2456A}
 .perk{position:relative;text-align:center;padding:20px 18px 18px;border-radius:22px;background:linear-gradient(160deg,#FFF8EC,#FDEFF3);border:1.5px dashed #E3B76A;box-shadow:0 14px 30px -20px rgba(162,100,90,.7)}
@@ -1514,8 +1529,147 @@ function fortuneHTML0(F){
       <p class="small muted">${F.honName}・ライフパス${F.lp}(${F.lpInfo[0]})</p></div>
     ${(()=>{const F2=nextYearFortune(F); return `<div class="yrtabs" role="tablist">${[F,F2].map((x,i)=>`<button type="button" role="tab" data-yr="${i}" aria-selected="${i===0}">${i?"来年":"今年"}<b>${x.kigakuYear}年</b></button>`).join("")}</div>
     <div class="yrpanel" data-yp="0">${yearPanelHTML(F,true)}</div><div class="yrpanel" data-yp="1" hidden>${yearPanelHTML(F2,false)}</div>`})()}
-    </section>`;
+    </section>
+    ${deepHTML(F)}`;
 }
+/* ---------- 詳しい鑑定(算命学・西洋占星術・マヤ暦) ---------- */
+const KAN=["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"], SHI=["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+const NIKKAN={
+ "甲":["大樹","まっすぐ上へ伸びていく大きな木のような人。向上心が強く、曲がったことが苦手な誠実さがあります。人から頼られ、自然とまとめ役になることが多いでしょう。"],
+ "乙":["草花","しなやかに風を受け流す草花のような人。協調性があり、人とのつながりの中で力を発揮します。見た目のやわらかさの奥に、折れない粘り強さを持っています。"],
+ "丙":["太陽","空に輝く太陽のような人。明るく裏表がなく、そこにいるだけで場が明るくなります。情熱的で、思い立ったらすぐ動ける行動力が魅力です。"],
+ "丁":["灯火","夜を照らす灯火のような人。内に秘めた情熱と、細やかな感性を持っています。一つのことを深く照らす集中力があり、身近な人の心をあたためます。"],
+ "戊":["山","どっしりとした山のような人。包容力と安定感があり、まわりの人が安心して集まってきます。簡単には動じない、信頼される存在です。"],
+ "己":["田畑","作物を育てる田畑のような人。面倒見がよく、人や物事をじっくり育てる力があります。現実的で几帳面、積み重ねたものを大切にします。"],
+ "庚":["鉄","鍛えられた鉄のような人。決断力と行動力があり、困難な場面ほど力を発揮します。正義感が強く、筋を通すことを大事にします。"],
+ "辛":["宝石","磨かれて輝く宝石のような人。美しいものへの感覚が鋭く、繊細さと品のよさを持っています。経験を重ねるほど、その人らしい輝きが増していきます。"],
+ "壬":["大海","広い海のような人。発想のスケールが大きく、自由を愛します。知性と好奇心で、行動範囲をどんどん広げていけるタイプです。"],
+ "癸":["雨","大地を潤す雨や霧のような人。思いやりが深く、静かにまわりを支えます。直感がするどく、目に見えないものを感じ取る力があります。"]};
+const TCS=[ // 日干支の旬ごと(0=甲子旬)
+ {k:"戌亥",m:[10,12],t:"理想や精神的なものを大切にする、独自の世界観を持つタイプ。目に見えない世界への感度が高い人に多いといわれます。"},
+ {k:"申酉",m:[8,10],t:"行動的で、忙しいくらいがちょうどいい現実派。動きながら考え、チャンスを形にしていく力があります。"},
+ {k:"午未",m:[6,8],t:"冷静で理性的、自分の足で立つ自立心の強いタイプ。人に頼るより、自分で決めて進むことを好みます。"},
+ {k:"辰巳",m:[4,6],t:"常識にとらわれない発想を持ち、波があるほど力を発揮するタイプ。ピンチをチャンスに変える底力があります。"},
+ {k:"寅卯",m:[2,4],t:"実行力のある現実派。理想を語るより、まず手を動かして結果を出すことを大事にします。"},
+ {k:"子丑",m:[12,2],t:"自分の力で道を切り開いていく「初代」の運を持つタイプ。家や環境に頼らず、自分の代で新しい流れをつくります。"}];
+function dayIndex(y,m,d){return Math.round((Date.UTC(y,m-1,d)-Date.UTC(2000,0,1))/864e5)}
+function sanmei(birth,now){
+  const [y,m,d]=birth.split("-").map(Number);
+  const di=((54+dayIndex(y,m,d))%60+60)%60, kan=KAN[di%10], shi=SHI[di%12];
+  const yy=(m<2||(m===2&&d<4))?y-1:y, yi=((yy-4)%60+60)%60;
+  const g=TCS[Math.floor(di/10)], br=[SHI.indexOf(g.k[0]),SHI.indexOf(g.k[1])];
+  now=now||new Date(); let cy=now.getFullYear(); if(now.getMonth()<1||(now.getMonth()===1&&now.getDate()<4)) cy--;
+  const yrs=[]; for(let Y=cy;yrs.length<2&&Y<cy+13;Y++){ if(br.includes(((Y-4)%12+12)%12)) yrs.push(Y) }
+  const bOf=Y=>((Y-4)%12+12)%12; if(br.includes(bOf(cy))){ yrs.length=0; if(br.includes(bOf(cy+1))) yrs.push(cy,cy+1); else yrs.push(cy-1,cy); }
+  return {kan,shi,nikkan:NIKKAN[kan],day:kan+shi,year:KAN[yi%10]+SHI[yi%12],tcs:g,tcsYears:yrs,nowTcs:br.includes(((cy-4)%12+12)%12),cy};
+}
+const SIGNS=[
+ ["牡羊座","まっすぐで行動が早い開拓者タイプ。やりたいと思ったら、まず飛び込んでみる勇気があります。"],
+ ["牡牛座","五感が豊かで、心地よさや本物を大切にする人。マイペースに、じっくり確かなものを築いていきます。"],
+ ["双子座","好奇心旺盛で、言葉とコミュニケーションのセンスがある人。軽やかにいろいろなことを吸収します。"],
+ ["蟹座","身内や仲間を大切にする、情の深い人。安心できる居場所をつくり、守る力があります。"],
+ ["獅子座","自分を表現することで輝く人。明るさと堂々とした雰囲気で、まわりを元気にします。"],
+ ["乙女座","細やかな気配りと分析力がある人。人の役に立つことに喜びを感じ、物事を丁寧に整えます。"],
+ ["天秤座","バランス感覚と美意識にすぐれた人。人と人との間を心地よくつなぐのが得意です。"],
+ ["蠍座","一つのことを深く掘り下げる集中力と、強い絆を求める情の深さを持つ人です。"],
+ ["射手座","自由と冒険を愛する人。広い世界や新しい考え方にふれることで、どんどん成長します。"],
+ ["山羊座","目標に向かってコツコツ積み上げる努力家。責任感が強く、時間をかけて大きなものを形にします。"],
+ ["水瓶座","独自の視点を持つ自由な発想の人。仲間や社会の新しい形を考えるのが得意です。"],
+ ["魚座","やさしく、想像力と共感力が豊かな人。目に見えないものを感じ取る感性を持っています。"]];
+function sunSign(m,d){const c=[20,19,21,20,21,22,23,23,23,24,23,22]; let i=(m+9)%12; if(d<c[m-1]) i=(i+11)%12; return i}
+// 木星・土星が星座に入る日(0=牡羊座)
+const JUP=[["2024-05-26",2],["2025-06-09",3],["2026-06-30",4],["2027-07-26",5],["2028-08-24",6],["2029-09-24",7],["2030-10-23",8]];
+const SAT=[["2023-03-07",11],["2025-05-25",0],["2025-09-01",11],["2026-02-14",0],["2028-04-13",1],["2030-06-01",2]];
+function planetAt(T,now){const s=now.toISOString().slice(0,10); let cur=T[0], nx=null; for(let i=0;i<T.length;i++){ if(T[i][0]<=s){cur=T[i]; nx=T[i+1]||null} } return {sign:cur[1],next:nx}}
+const JUP_H=["自分らしさを出すほど追い風が吹く時期。新しい自分を始めたり、見た目や生き方を一新したりするのに向いています。",
+ "お金や才能、自分の持ち物が育ちやすい時期。得意なことを仕事や収入につなげる工夫が実を結びやすいでしょう。",
+ "学びと発信が広がる時期。習いごと、SNSやブログ、身近な人との会話から、新しいチャンスが生まれやすくなります。",
+ "家庭や住まい、心のよりどころが整いやすい時期。家族との時間や、部屋を心地よくすることが運気の土台になります。",
+ "楽しむことが開運につながる時期。趣味や恋愛、創作など「好き」を表現すると、良い流れを呼び込みやすくなります。",
+ "仕事の進め方や毎日の習慣が整いやすい時期。体を整えることや、役割を丁寧にこなすことが評価につながります。",
+ "人とのご縁が広がる時期。パートナーや仕事の協力者など、一対一の関係から大きな実りが生まれやすいでしょう。",
+ "深い信頼関係が育つ時期。人から受け取るもの、受け継ぐものが増え、心の深いところでの変化も起こりやすくなります。",
+ "視野が大きく広がる時期。旅や海外、学問や精神的な探求が、あなたの世界を一回り大きくしてくれます。",
+ "社会での立場や仕事の評価が高まりやすい時期。これまでの努力が目に見える形になり、次のステージが見えてきます。",
+ "仲間や応援してくれる人が増える時期。コミュニティや同じ志の人とのつながりが、夢を後押ししてくれます。",
+ "心を整え、充電する時期。ひとりの時間や祈り、見えない世界とのつながりが、次の大きな飛躍の準備になります。"];
+const SAT_H=["自分自身のあり方を見つめ直すテーマ。焦らず、自分の軸を固めることが、この先の大きな支えになります。",
+ "お金や価値観を見直すテーマ。本当に大切なものにお金と時間を使う習慣が、確かな豊かさをつくります。",
+ "言葉と学びをしっかり身につけるテーマ。資格や勉強など、地道に続けたことが確かな力になります。",
+ "家庭や心の土台を整えるテーマ。住まいや家族とのことに向き合うと、気持ちが安定していきます。",
+ "表現や楽しみに本気で向き合うテーマ。趣味や創作を「続ける」ことで、それが自信に変わっていきます。",
+ "働き方と体のケアを見直すテーマ。無理を減らし、続けられるペースをつくることが大切です。",
+ "人間関係の責任と向き合うテーマ。大切な人との約束を一つずつ守ることで、関係が深まっていきます。",
+ "信頼や共有するものとの付き合い方を見直すテーマ。手放すものを決めると、新しい力が入ってきます。",
+ "学びや信念を深めるテーマ。一つの分野をじっくり学ぶことで、ゆるがない考え方が育ちます。",
+ "仕事や社会での役割を固めるテーマ。地道な積み重ねが、長く続く信頼と評価につながります。",
+ "仲間や将来の目標を見直すテーマ。本当に一緒に進みたい人や、目指したい未来がはっきりしてきます。",
+ "心の奥を整理するテーマ。ひとりで静かに過ごす時間が、気持ちの整理と次の準備になります。"];
+const SEALS=[
+ ["赤い竜","育む・はじまり","生命を育む母のような力を持つ人。面倒見がよく、何かを最初に始める力があります。"],
+ ["白い風","言葉・伝える","言葉や声に思いを乗せて伝える人。繊細な感受性で、人の気持ちを感じ取ります。"],
+ ["青い夜","夢・豊かさ","夢を描き、それを形にしていく人。自分の世界を大切にし、豊かさを引き寄せます。"],
+ ["黄色い種","気づき・探求","知りたいことをとことん探求する人。小さな種から大きな花を咲かせる粘り強さがあります。"],
+ ["赤い蛇","生命力・情熱","エネルギッシュで情熱的な人。体の感覚が鋭く、ここぞという時の集中力があります。"],
+ ["白い世界の橋渡し","つなぐ・手放す","人と人、世界と世界をつなぐ人。古いものを手放して、新しい流れを生み出します。"],
+ ["青い手","癒し・手仕事","手を使って癒し、形にする人。実際にやってみることで理解を深めていきます。"],
+ ["黄色い星","美・調和","美しいものを愛し、調和をつくる人。細部までこだわり、物事を美しく仕上げます。"],
+ ["赤い月","浄化・流れ","新しい流れを生み出す人。使命感が強く、まわりを浄化するような存在です。"],
+ ["白い犬","誠実・愛","誠実で家族や仲間を大切にする人。一度結んだ縁を深く大事にします。"],
+ ["青い猿","遊び心・ひらめき","遊び心とひらめきにあふれる人。楽しい雰囲気で、まわりの緊張をほぐします。"],
+ ["黄色い人","自由意志・知恵","自分の考えで道を選ぶ人。知恵を集め、人の役に立つ形にしていきます。"],
+ ["赤い空歩く人","探訪・ひろげる","未知の世界へ出かけていく人。人のために動くことで、可能性を広げていきます。"],
+ ["白い魔法使い","受け入れる・時を超える","まわりを惹きつける魅力がある人。物事をありのまま受け入れる、懐の深さがあります。"],
+ ["青い鷲","ビジョン・俯瞰","高いところから全体を見渡す人。先を読む力と、心を打つ感性があります。"],
+ ["黄色い戦士","挑戦・問いかけ","問いを持ち、挑戦し続ける人。困難に向かっていく勇気と知性があります。"],
+ ["赤い地球","共鳴・導き","心と心を響き合わせる人。仲間との絆を大切にし、まわりを良い方向へ導きます。"],
+ ["白い鏡","真実・映す","物事の本質を見抜く人。ありのままを映す鏡のように、まっすぐで誠実です。"],
+ ["青い嵐","変容・エネルギー","大きなエネルギーで変化を起こす人。まわりを巻き込みながら、新しいものを生み出します。"],
+ ["黄色い太陽","光・無条件の愛","太陽のように分けへだてなく照らす人。大きな視点で、まわりに光を届けます。"]];
+const TONES=["","磁気(目的を定める)","月(二つをつなぐ)","電気(活性化する)","自己存在(形にする)","倍音(力を集める)","律動(バランスをとる)","共振(調律する)","銀河(調和を保つ)","太陽(意図を実現する)","惑星(現実にする)","スペクトル(解き放つ)","水晶(協力する)","宇宙(超えていく)"];
+function nl(y,m,d){const c=[0,31,59,90,120,151,181,212,243,273,304,334]; if(m===2&&d===29) d=28; return y*365+c[m-1]+d}
+function maya(birth){const [y,m,d]=birth.split("-").map(Number); const diff=nl(y,m,d)-nl(2012,12,21);
+  const kin=(((206+diff)%260)+260)%260+1, seal=(kin-1)%20, tone=(kin-1)%13+1, ws=((kin-tone)%20+20)%20;
+  return {kin,seal:SEALS[seal],tone,toneName:TONES[tone],wave:SEALS[ws]}}
+function deepUnlocked(){return !!loadSaved().deepOpen}
+function deepHTML(F){
+  const [y,m,d]=F.birth.split("-").map(Number), now=new Date();
+  const S1=sanmei(F.birth,now), si=sunSign(m,d), J=planetAt(JUP,now), Sa=planetAt(SAT,now), M=maya(F.birth);
+  const jh=(J.sign-si+12)%12, sh=(Sa.sign-si+12)%12, open=deepUnlocked();
+  const tcsY=S1.nowTcs?`<mark>${S1.tcsYears.join("年・")}年</mark>が、ちょうど天中殺の時期にあたります。`:`次の天中殺の年は<mark>${S1.tcsYears.join("年・")}年</mark>です。`;
+  const nx=(p)=>p.next?`(${p.next[0].slice(0,4)}年${+p.next[0].slice(5,7)}月ごろ${SIGNS[p.next[1]][0]}へ移ります)`:"";
+  return `<section class="deep" id="deep">
+  <div class="stack" style="gap:2px"><div class="latin">Soul Blueprint</div><h2>魂の設計図</h2>
+    <p class="small muted">算命学・西洋占星術・マヤ暦で、生まれ持った設計図を読み解きます</p></div>
+  <div class="deepwrap${open?"":" locked"}"><div class="deepbody stack">
+    <div class="dcard"><div class="dhead"><small>算命学</small><b>本質は「${S1.nikkan[0]}」</b></div>
+      <p class="small muted">日干支：${S1.day}・年干支：${S1.year}</p>
+      <p>${S1.nikkan[1]}</p>
+      <h3>${S1.tcs.k}天中殺</h3><p>${S1.tcs.t}</p>
+      <p>天中殺は、新しいことを無理に広げるより、今あるものを整えたり学んだりするのに向く時期といわれます。${tcsY}(各年とも節分の翌日から1年間)</p>
+      <p class="small">毎年の天中殺の月：${S1.tcs.m[0]}月上旬〜${S1.tcs.m[1]}月上旬ごろ</p></div>
+    <div class="dcard"><div class="dhead"><small>西洋占星術</small><b>太陽星座は「${SIGNS[si][0]}」</b></div>
+      <p>${SIGNS[si][1]}</p>
+      <h3>いまの木星は${SIGNS[J.sign][0]}</h3><p class="small muted">伸びやすい分野 ${nx(J)}</p><p>${JUP_H[jh]}</p>
+      <h3>いまの土星は${SIGNS[Sa.sign][0]}</h3><p class="small muted">じっくり向き合うテーマ ${nx(Sa)}</p><p>${SAT_H[sh]}</p>
+      <p class="small muted">星座の境目の日に生まれた方は、生まれ年によって前後の星座になることがあります。</p></div>
+    <div class="dcard"><div class="dhead"><small>マヤ暦</small><b>KIN ${M.kin}「${M.seal[0]}」</b></div>
+      <p class="small muted">太陽の紋章：${M.seal[0]}(${M.seal[1]})・音：${M.tone} ${M.toneName}・ウェイブスペル：${M.wave[0]}</p>
+      <p>${M.seal[2]}</p>
+      <p>人生の大きな流れを表すウェイブスペルは「${M.wave[0]}」。${M.wave[2]}</p></div>
+    <p class="note">算命学・西洋占星術・マヤ暦をもとにした、お楽しみの読み解きです。</p>
+  </div>
+  ${open?"":`<div class="deeplock"><div class="dlbox"><b>🔒 あなたの「魂の設計図」は公式LINEで</b>
+    <p>算命学・西洋占星術・マヤ暦で読み解いた、<br>あなただけの設計図が開きます。</p>
+    <a class="btn line" data-deepopen data-track="line_unlock" href="${LINE_ADD}" target="_blank" rel="noopener">LINEで友だち追加して開く</a>
+    <p class="perkline" style="margin-top:8px"><span>LINE登録特典</span>1万円以上ご注文で<em>3,000円引き！</em></p>
+    <button type="button" class="linkbtn" data-deepopen>すでに友だち追加済みの方はこちら</button></div></div>`}
+  </div></section>`;
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-deepopen]"); if(!b) return;
+  saveSaved({deepOpen:true}); track("deep_open",{via:b.tagName==="A"?"line":"already"});
+  setTimeout(()=>{const w=document.querySelector(".deepwrap"); if(w){w.classList.remove("locked"); const l=w.querySelector(".deeplock"); if(l) l.remove();}}, b.tagName==="A"?600:0);});
+
 function nextYearFortune(F){ const G=fortune(F.birth,new Date(F.kigakuYear+1,2,15)); G.birth=F.birth; return G }
 function yearPanelHTML(F,isNow){
   const Y=YEAR_READ[F.yearPal.k], L=STAR_LUCKY[F.hon], LD=luckyDays(F), W=isNow?"今年":"来年";
