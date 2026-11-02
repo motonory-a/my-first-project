@@ -2017,8 +2017,16 @@ function viewShared(){
   drawBracelet($("br"),r.d); app.querySelectorAll("canvas[data-bead]").forEach(c=>drawSingle(c,c.dataset.bead));
   return true;
 }
-if(new URLSearchParams(location.search).get("start")==="1"){S.step=1; track("lp_to_kantei");}
-if(!viewShared()) render();
+/* ---------- LINEから戻ったときに鑑定結果を復元 ---------- */
+function saveSession(){try{const c=Object.assign({},S,{result:null}); sessionStorage.setItem("kstate",JSON.stringify({t:Date.now(),y:window.scrollY||0,s:c}))}catch(e){}}
+const _renderOrig=render; render=function(){_renderOrig(); saveSession();};
+window.addEventListener("pagehide",saveSession); document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden") saveSession()});
+let RESTORE_Y=0;
+{try{const o=JSON.parse(sessionStorage.getItem("kstate")||"null"); if(o&&o.s&&o.s.step>0&&Date.now()-o.t<3*3600e3){Object.assign(S,o.s,{result:null}); try{ if(S.birth&&flow()[S.step]&&["result","order"].includes(flow()[S.step].k)) S.result=makeDesigns(); }catch(e){S.result=null} RESTORE_Y=o.y||1;}}catch(e){}}
+/* スマホではLINEのリンクを同じタブで開く(戻ったときに空のタブが残らないように) */
+document.addEventListener("click",e=>{const a=e.target.closest('a[href^="https://lin.ee/"],a[href^="https://line.me/"]'); if(a&&IS_MOBILE) a.removeAttribute("target");},true);
+if(!RESTORE_Y&&S.step===0&&new URLSearchParams(location.search).get("start")==="1"){S.step=1; track("lp_to_kantei");}
+if(!viewShared()){ render(); if(RESTORE_Y) setTimeout(()=>window.scrollTo(0,RESTORE_Y),350); }
 
 /* ---------- サイトのリンクをコピー ---------- */
 document.addEventListener("click",e=>{const b=e.target.closest("[data-copyurl]"); if(!b) return;
