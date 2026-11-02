@@ -41,4 +41,21 @@ for fn in sorted(os.listdir(UP)):
         added+=1
     os.remove(p)
 json.dump(data,open(JS,'w',encoding='utf-8'),ensure_ascii=False,indent=1)
+# 作品ごとのリンク用ページ(LINEで送ったときに写真が出るように)
+OG=os.path.join(ROOT,'og'); PG=os.path.join(ROOT,'p'); os.makedirs(OG,exist_ok=True); os.makedirs(PG,exist_ok=True)
+BASE='https://motonory-a.github.io/my-first-project/'
+for w in data:
+    h=w['id']; jp=os.path.join(OG,h+'.jpg')
+    if not os.path.exists(jp):
+        try:
+            im=Image.open(os.path.join(ROOT,'img',h+'.webp')).convert('RGB'); im.thumbnail((1200,1200)); im.save(jp,'JPEG',quality=85)
+        except Exception as e: print('og skip',h,e); continue
+    pp=os.path.join(PG,h+'.html')
+    if not os.path.exists(pp):
+        open(pp,'w',encoding='utf-8').write(f"""<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>オーダーメイドの天然石ブレスレット｜アッキーの作品</title>
+<meta property="og:type" content="website"><meta property="og:title" content="この作品のような感じで作りたい"><meta property="og:description" content="アッキーがオーダーメイドでお作りした天然石ブレスレットです。">
+<meta property="og:image" content="{BASE}works/og/{h}.jpg"><meta property="og:url" content="{BASE}works/p/{h}.html"><meta name="twitter:card" content="summary_large_image">
+<meta http-equiv="refresh" content="0;url=../../?w={h}"></head><body style="margin:0;background:#FBF6F7"><a href="../../?w={h}"><img src="../og/{h}.jpg" alt="作品" style="display:block;max-width:100%;margin:auto"></a></body></html>""")
+
 print('added',added,'total',len(data))
