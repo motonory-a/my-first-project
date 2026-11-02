@@ -530,7 +530,8 @@ html,body{overflow-x:clip}
 .deeplock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;background:linear-gradient(rgba(251,246,247,.15),rgba(251,246,247,.85) 40%)}
 .dlbox{width:100%;max-width:420px;text-align:center;background:#fff;border:1.5px solid #E3B76A;border-radius:20px;padding:20px 18px;box-shadow:0 16px 34px -18px rgba(150,70,90,.6)}
 .dlbox>b{display:block;font-size:18px;font-family:var(--f-display);color:var(--ink)}
-.dlbox>p{font-size:14px;color:var(--muted);margin:8px 0 14px}
+.dlbox>p{font-size:13.5px;letter-spacing:-.01em;color:var(--muted);margin:8px 0 14px}
+.dlbox .perkline em{white-space:nowrap}
 .linkbtn{margin-top:10px;background:none;border:0;color:var(--muted);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
 .dcard{background:#fff;border:1px solid #ECDDE6;border-radius:18px;padding:16px}
 .dcard h3{font-size:15.5px;margin:14px 0 2px}
@@ -1659,8 +1660,8 @@ function deepHTML(F){
       <p>人生の大きな流れを表すウェイブスペルは「${M.wave[0]}」。${M.wave[2]}</p></div>
     <p class="note">算命学・西洋占星術・マヤ暦をもとにした、お楽しみの読み解きです。</p>
   </div>
-  ${open?"":`<div class="deeplock"><div class="dlbox"><b>🔒 あなたの「魂の設計図」は公式LINEで</b>
-    <p>算命学・西洋占星術・マヤ暦で読み解いた、<br>あなただけの設計図が開きます。</p>
+  ${open?"":`<div class="deeplock"><div class="dlbox"><b>🔒 あなたの「魂の設計図」は<br>公式LINEで</b>
+    <p>算命学・西洋占星術・マヤ暦で読み解いた<br>あなただけの設計図が開きます。</p>
     <a class="btn line" data-deepopen data-track="line_unlock" href="${LINE_ADD}" target="_blank" rel="noopener">LINEで友だち追加して開く</a>
     <p class="perkline" style="margin-top:8px"><span>LINE登録特典</span>1万円以上ご注文で<em>3,000円引き！</em></p>
     <button type="button" class="linkbtn" data-deepopen>すでに友だち追加済みの方はこちら</button></div></div>`}
