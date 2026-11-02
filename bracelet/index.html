@@ -129,4 +129,11 @@ var PICK=["c679a15731", "c599d797ff", "b933f63fe8", "16115e64f8", "f379454544", 
  PICK.forEach(function(h,i){var b=document.createElement("button");b.type="button";b.innerHTML='<img src="../works/img/'+h+(i===0?'.webp':'_t.webp')+'" alt="オーダーメイドの天然石ブレスレット" loading="lazy">';
   b.onclick=function(){document.getElementById("dlgimg").src="../works/img/"+h+".webp";d.showModal();track("lp_works_open")};g.appendChild(b)});
  d.addEventListener("click",function(e){if(e.target===d)d.close()});})();
+
+(function(){var M=/iPhone|iPad|iPod|Android|Mobile/i.test(navigator.userAgent)||(navigator.maxTouchPoints>1&&/Macintosh/.test(navigator.userAgent)); if(M) return;
+ document.addEventListener("click",function(e){var a=e.target.closest('a[href^="https://lin.ee/"]'); if(!a) return; e.preventDefault();
+  var d=document.getElementById("pcq"); if(!d){d=document.createElement("dialog");d.id="pcq";d.style.cssText="border:0;border-radius:20px;padding:22px 20px;max-width:380px;text-align:center;background:#FBF6F7";
+   d.innerHTML='<button type="button" style="position:absolute;top:8px;right:10px;border:0;background:none;font-size:22px;cursor:pointer" onclick="this.parentNode.close()">×</button><b style="font-size:18px">スマホのLINEで友だち追加</b><p style="font-size:13px;color:#66505F;margin:8px 0">パソコンからはLINEに直接つながらないため、<br>スマホのカメラでQRコードを読み取ってください。</p><img src="https://qr-official.line.me/gs/M_425vvwoh_GW.png?oat__id=7325745&oat_content=qr" width="200" height="200" alt="QRコード" style="display:block;margin:8px auto;border:1px solid #ECDDE6;border-radius:12px;background:#fff"><p style="font-size:12px;color:#66505F">LINEで <b>@425vvwoh</b> を検索しても見つかります。</p>';
+   d.addEventListener("click",function(ev){if(ev.target===d)d.close()}); document.body.appendChild(d);}
+  d.showModal(); track("pc_line_qr");},true);})();
 </script></body></html>

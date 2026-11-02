@@ -565,6 +565,13 @@ html,body{overflow-x:clip}
 .znav a{flex:none;font-size:12.5px;font-weight:700;color:#8A5A2B;text-decoration:none;background:#FBF1DF;border-radius:99px;padding:3px 11px}
 .zg{scroll-margin-top:110px}
 .zclose{margin-top:14px}
+.pcline{border:0;padding:0;background:transparent;max-width:min(420px,94vw);width:100%}
+.pcline::backdrop{background:rgba(40,20,36,.75)}
+.pclbox{position:relative;background:#FBF6F7;border-radius:20px;padding:22px 20px 18px;text-align:center}
+.pclt{display:block;font-size:18px;margin:4px 0 6px}
+.pclbox img{display:block;margin:10px auto;width:200px;height:200px;border:1px solid #ECDDE6;border-radius:12px;background:#fff}
+.pclmsg{width:100%;height:110px;font:13px/1.6 "Zen Maru Gothic",sans-serif;border:1px solid #ECDDE6;border-radius:10px;padding:8px;margin:6px 0 8px;resize:none}
+.pclok{color:#06A045;font-weight:700;margin:6px 0 0}
 .dlbox .perkline em{white-space:nowrap}
 .linkbtn{margin-top:10px;background:none;border:0;color:var(--muted);font:inherit;font-size:13px;text-decoration:underline;cursor:pointer}
 .dcard{background:#fff;border:1px solid #ECDDE6;border-radius:18px;padding:16px}
@@ -2045,6 +2052,21 @@ const _renderOrig=render; render=function(){_renderOrig(); saveSession();};
 window.addEventListener("pagehide",saveSession); document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="hidden") saveSession()});
 let RESTORE_Y=0;
 {try{const o=JSON.parse(sessionStorage.getItem("kstate")||"null"); if(o&&o.s&&o.s.step>0&&Date.now()-o.t<3*3600e3){Object.assign(S,o.s,{result:null}); try{ if(S.birth&&flow()[S.step]&&["result","order"].includes(flow()[S.step].k)) S.result=makeDesigns(); }catch(e){S.result=null} RESTORE_Y=o.y||1;}}catch(e){}}
+/* パソコンではLINEのページ(QRコードだけの画面)に飛ばさず、このサイトの中でQRコードを出す */
+const LINE_QR="https://qr-official.line.me/gs/M_425vvwoh_GW.png?oat__id=7325745&oat_content=qr";
+function pcLineDialog(kind,text){ let d=$("pcline"); if(!d){d=document.createElement("dialog"); d.id="pcline"; d.className="pcline"; document.body.appendChild(d); d.addEventListener("click",e=>{if(e.target===d) d.close()});}
+  d.innerHTML=`<div class="pclbox"><button type="button" class="wkx" aria-label="閉じる" data-x>×</button>
+    <b class="pclt">${kind==="msg"?"スマホのLINEで送ってください":"スマホのLINEで友だち追加"}</b>
+    <p class="small">パソコンからはLINEに直接つながらないため、<br>スマホのカメラでQRコードを読み取ってください。</p>
+    <img src="${LINE_QR}" alt="アッキーの公式LINEのQRコード" width="200" height="200">
+    <p class="small muted">LINEの「友だち追加」で <b>${LINE_ID}</b> を検索しても見つかります。</p>
+    ${kind==="msg"?`<p class="small">友だち追加のあと、下の「メッセージをコピー」を押して、トークに貼り付けて送ってください。</p><textarea class="pclmsg" readonly>${esc(text)}</textarea><button type="button" class="btn line" data-copy>メッセージをコピー</button><p class="small pclok" hidden>コピーしました</p>`:""}
+  </div>`;
+  d.querySelector("[data-x]").onclick=()=>d.close();
+  const cb=d.querySelector("[data-copy]"); if(cb) cb.onclick=()=>{const t=d.querySelector(".pclmsg"); const ok=()=>{d.querySelector(".pclok").hidden=false}; if(navigator.clipboard) navigator.clipboard.writeText(t.value).then(ok,()=>{t.select();document.execCommand("copy");ok()}); else {t.select();document.execCommand("copy");ok()} };
+  if(!d.open) d.showModal(); track("pc_line_qr",{kind}); }
+document.addEventListener("click",e=>{ if(IS_MOBILE) return; const a=e.target.closest('a[href^="https://lin.ee/"],a[href^="https://line.me/R/ti/"],a[href^="https://line.me/R/oaMessage/"]'); if(!a) return;
+  e.preventDefault(); const h=a.getAttribute("href"); if(h.includes("/oaMessage/")){ let t=""; try{ t=decodeURIComponent(h.split("?").slice(1).join("?")) }catch(_){} pcLineDialog("msg",t) } else pcLineDialog("add") },true);
 /* スマホではLINEのリンクを同じタブで開く(戻ったときに空のタブが残らないように) */
 document.addEventListener("click",e=>{const a=e.target.closest('a[href^="https://lin.ee/"],a[href^="https://line.me/"]'); if(a&&IS_MOBILE) a.removeAttribute("target");},true);
 if(!RESTORE_Y&&S.step===0&&new URLSearchParams(location.search).get("start")==="1"){S.step=1; track("lp_to_kantei");}
