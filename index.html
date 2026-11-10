@@ -1457,7 +1457,7 @@ const $=id=>document.getElementById(id);
 function flow(){
   const f=[{k:"intro"},{k:"birth",q:1},{k:"theme",q:1}];
   (S.theme?BRANCH[S.theme]:[0]).forEach((b,i)=>f.push({k:"branch",idx:i,q:1}));
-  f.push({k:"likeColors",q:1},{k:"avoidColors",q:1},{k:"vibes",q:1},{k:"liked",q:1},{k:"budget",q:1},{k:"free",q:1},{k:"result"},{k:"order"});
+  f.push({k:"likeColors",q:1},{k:"vibes",q:1},{k:"liked",q:1},{k:"budget",q:1},{k:"free",q:1},{k:"result"},{k:"order"});
   return f;
 }
 function go(delta){const f=flow(); S.step=Math.max(0,Math.min(f.length-1,S.step+delta)); render(); try{const k=f[S.step].k; if(delta>0){const n=f.slice(0,S.step+1).filter(x=>x.q).length; track("ks_"+(n<10?"0":"")+n+"_"+k+(k==="branch"?f[S.step].idx:""));} if(k==="birth")track("kantei_start"); if(k==="result")track("kantei_complete",{soul:S.result&&S.result.F.soul.name,gender:S.gender||"none"}); if(k==="order")track("consult_open",{design:S.result.designs[S.sel].mode.name});}catch(e){} window.scrollTo({top:0})}
@@ -1865,7 +1865,7 @@ function orderHTML(){
     <p class="spec" id="spec2"></p>
     <div class="card stack">
       <label class="f">ご希望の価格帯<select id="bg">${BUDGETS.map((b,i)=>`<option value="${i}"${S.budget===i?" selected":""}>${b}</option>`).join("")}</select></label>
-      <label class="f">アッキーへのご要望(任意)<textarea id="nt" style="min-height:80px" placeholder="例:誕生日までに欲しいです/ビデオ通話は平日の夜が希望です">${esc(S.note)}</textarea></label>
+      <label class="f">アッキーへのご要望(任意)<textarea id="nt" style="min-height:80px" placeholder="例:誕生日までに欲しいです/苦手な色・石があれば教えてください/ビデオ通話は平日の夜が希望です">${esc(S.note)}</textarea></label>
       <p class="note">入力した内容はこのサイトには保存されず、次のボタンでLINEのメッセージとしてアッキーに届きます。</p>
     </div>
     <div class="err" id="err"></div>
