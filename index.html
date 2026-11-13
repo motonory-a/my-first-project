@@ -221,6 +221,11 @@ h1,h2,h3,.kwcatch,.lead,.cats p,.month p,.lk b,.why,.akki p{word-break:auto-phra
 .opts.two .opt .mk{width:16px;height:16px}
 .chip{font-size:16px;padding:10px 15px}
 input.big{font-size:20px;padding:14px;text-align:center}
+.bdin{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px}
+.bdin label{display:flex;align-items:center;gap:4px;font-weight:700;color:var(--ink)}
+.bdin input,.bdin select{font-size:20px;padding:12px 6px;text-align:center;text-align-last:center}
+.bdin span{flex:none;font-size:15px}
+.bdwk{margin:6px 0 0;font-size:13px;color:var(--rose);text-align:center}
 .linebox{gap:8px;padding:14px}
 .check{font-size:15.5px}
 /* ---- トップ ---- */
@@ -1492,7 +1497,7 @@ function render(){
   const cur=flow()[S.step]; let h="";
   if(cur.k==="intro") h=introHTML();
   else if(cur.k==="birth") h=qScreen(cur,"生年月日を教えてください","お名前やメールアドレスは必要ありません",
-    `<input type="date" id="bd" class="big" value="${esc(S.birth)}" min="1920-01-01" max="2015-12-31" aria-label="生年月日">
+    `${bdHTML("bd",S.birth,2015)}
     <div class="gsel"><b>性別</b><div class="seg" role="group" aria-label="性別">${[["f","女性"],["m","男性"],["x","答えない"]].map(g=>`<button type="button" data-g="${g[0]}" aria-pressed="${S.gender===g[0]}">${g[1]}</button>`).join("")}</div></div>
     
     <p class="note">生年月日はこのスマホの中だけに記憶され、次回から入力不要になります。</p><div class="err" id="err"></div>`,nextBtn(true,"鑑定をはじめる"));
@@ -1794,12 +1799,28 @@ function zukanHTML(SO){return `      <details class="more zukan"><summary><small
         <button type="button" class="btn ghost zclose" data-zclose>図鑑を閉じて鑑定結果に戻る</button>
       </div></details>
 `;}
+function wareki(y){return y>=2019?"令和"+(y-2018===1?"元":y-2018)+"年":y>=1989?"平成"+(y-1988===1?"元":y-1988)+"年":y>=1926?"昭和"+(y-1925===1?"元":y-1925)+"年":"大正"+(y-1911)+"年"}
+function bdHTML(id,v,maxY){const [y,m,d]=(v||"").split("-");
+  return `<div class="bdin" id="${id}"><label class="bdy"><input type="text" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="1980" value="${y?+y:""}" data-bp="y" data-max="${maxY}" aria-label="生まれた年(西暦4けた)"><span>年</span></label>
+    <label><select data-bp="m" aria-label="生まれた月"><option value="">--</option>${Array.from({length:12},(_,i)=>`<option value="${i+1}" ${m&&+m===i+1?"selected":""}>${i+1}</option>`).join("")}</select><span>月</span></label>
+    <label><select data-bp="d" aria-label="生まれた日"><option value="">--</option>${Array.from({length:31},(_,i)=>`<option value="${i+1}" ${d&&+d===i+1?"selected":""}>${i+1}</option>`).join("")}</select><span>日</span></label></div>
+    <p class="bdwk" id="${id}wk" aria-live="polite">${y?wareki(+y)+"生まれ":"西暦4けたで入力してください(例:1980)"}</p>`}
+function bdBind(id){const r=$(id); if(!r) return; const yi=r.querySelector('[data-bp="y"]'), w=$(id+"wk");
+  ["input","change"].forEach(ev=>r.addEventListener(ev,()=>{const e=$("err"); if(e&&id==="bd") e.textContent=""}));
+  yi.addEventListener("input",()=>{yi.value=yi.value.replace(/[^0-9]/g,"").slice(0,4); const y=+yi.value;
+    w.textContent=yi.value.length===4&&y>=1920&&y<=+yi.dataset.max?wareki(y)+"生まれ":"西暦4けたで入力してください(例:1980)";
+    if(yi.value.length===4) yi.blur()})}
+function bdRead(id){const r=$(id); const y=+r.querySelector('[data-bp="y"]').value, m=+r.querySelector('[data-bp="m"]').value, d=+r.querySelector('[data-bp="d"]').value, mx=+r.querySelector('[data-bp="y"]').dataset.max;
+  if(!y||!m||!d) return {err:"生年月日をすべて選んでください。"};
+  if(y<1920||y>mx) return {err:"生まれた年は西暦4けたで入力してください(例:1980)。"};
+  const dt=new Date(y,m-1,d); if(dt.getMonth()!==m-1) return {err:m+"月"+d+"日はありません。日付を確かめてください。"};
+  return {v:y+"-"+String(m).padStart(2,"0")+"-"+String(d).padStart(2,"0")}}
 function soulExtrasHTML(SO){
   return `<div class="morefun">
       <div class="mfhead"><div class="mfrow"><span class="mfline"></span><span class="latin">More Fun</span><span class="mfline r"></span></div><h3>魂の系統をもっと楽しむ</h3></div>
       <div class="pair stack"><b class="pairt">あの人の魂の系統と、二人の相性</b>
         <p class="small muted">気になる人の生年月日を入れてみてください(どこにも保存されません)</p>
-        <div class="row"><input type="date" id="pbd" aria-label="相手の生年月日" min="1920-01-01" max="2025-12-31"><button class="btn rose small" id="pgo" type="button">見る</button></div>
+        ${bdHTML("pbd","",2025)}<button class="btn rose small" id="pgo" type="button">相性を見る</button>
         <div id="pres" aria-live="polite"></div></div>
     </div>`;
 }
@@ -1966,8 +1987,9 @@ function bind(cur){
     app.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{S.gender=b.dataset.g; S.result=null; app.querySelectorAll("[data-g]").forEach(z=>z.setAttribute("aria-pressed",z===b))});
     
     
-    $("next").onclick=()=>{S.birth=$("bd").value;
-      const e=!S.birth?"生年月日を入力してください。":"";
+    bdBind("bd");
+    $("next").onclick=()=>{const R=bdRead("bd"); S.birth=R.v||"";
+      const e=R.err||"";
       if(e){$("err").textContent=e;return} saveSaved({birth:S.birth,lineDone:true,gender:S.gender||""}); S.result=null; go(1)};
   }
   const auto=()=>setTimeout(()=>go(1),220);
@@ -1998,7 +2020,7 @@ function bindResult(){
     const upd=()=>bar.classList.toggle("hide",!seen||ctaOn);
     new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting||e.boundingClientRect.top<0) seen=true; upd() })).observe($("detail"));
     new IntersectionObserver(es=>es.forEach(e=>{ ctaOn=e.isIntersecting; upd() })).observe($("ctacard")); }
-  $("pgo").onclick=()=>{const v=$("pbd").value; if(v)track("partner_check"); if(!v){$("pres").innerHTML='<p class="err">生年月日を入れてください</p>';return}
+  bdBind("pbd"); $("pgo").onclick=()=>{const PB=bdRead("pbd"), v=PB.v; if(v)track("partner_check"); if(!v){$("pres").innerHTML='<p class="err">'+PB.err+'</p>';return}
     const me=R.F.soul, him=SOULS[soulIndexOf(v)], sc=soulMatch(me,him);
     $("pres").innerHTML=`<div class="pcard" style="--sc:${EL_COLOR[him.el]}">${soulImg(him,"md")}<small>あの人の魂の系統</small><b>${him.name}</b><span class="small">${him.g}・${him.stance}・${him.trait}</span>
       <div class="pscore"><span>二人の相性</span><b>${sc}%</b></div><p>${matchMessage(sc)}</p>${(()=>{try{const a=shukuOf(R.F.birth||S.birth), b=shukuOf(v), r=shukuRel(a,b), T=SHUKU_REL[r]; return `<div class="shuku"><small>宿曜で見るふたり</small><b>「${r}」の関係</b><p class="small muted">あなた：${SHUKU[a]}宿 ／ あの人：${SHUKU[b]}宿</p><p class="small"><b>${T[0]}</b>。${T[1]}</p><p class="akkiline"><b>アッキーより</b>「${T[2]}」</p></div>`}catch(e){return ""}})()}</div>`;};
