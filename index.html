@@ -511,6 +511,11 @@ html,body{overflow-x:clip}
 .psban p{color:#EDE4FA;font-size:13.5px;line-height:1.7;margin:0 0 14px}
 .psban .psbtn{display:inline-flex;align-items:center;gap:6px;background:#fff;color:#4B2D7E;font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:999px}
 .fps{display:inline-block;margin-bottom:6px;color:#4B2D7E;font-weight:700}
+.khban{display:block;margin-top:16px;text-decoration:none;color:#fff;border-radius:20px;overflow:hidden;padding:22px 20px 20px;background:radial-gradient(120% 90% at 85% 0%,#2b3f7a 0%,#13224a 45%,#0c1838 100%);box-shadow:0 10px 28px rgba(12,24,56,.28);border:1px solid rgba(210,174,104,.6)}
+.khban .kheye{font-size:11px;letter-spacing:.12em;color:#E8D7A8;font-weight:700}
+.khban h3{color:#F6E7C1;font-size:clamp(19px,5.6vw,26px);line-height:1.4;margin:6px 0 8px}
+.khban p{color:#E6E9F2;font-size:13.5px;line-height:1.7;margin:0 0 14px}
+.khban .khbtn{display:inline-flex;align-items:center;gap:6px;background:#F6E7C1;color:#0c1838;font-weight:700;font-size:14.5px;padding:11px 18px;border-radius:999px}
 .wkdlg{border:0;padding:0;background:transparent;max-width:min(520px,94vw);width:100%}
 .wkdlg::backdrop{background:rgba(40,20,36,.82)}
 .wkbox{position:relative;background:#FBF6F7;border-radius:20px;overflow:hidden}
@@ -1481,7 +1486,7 @@ function header(cur){
 function optsHTML(list,sel){const two=list.length>6; return `<div class="opts${two?" two":""}${list.length>12?" many":""}">${list.map((l,i)=>`<button type="button" class="opt" data-i="${i}" aria-pressed="${sel===i}"><span class="mk"></span><span>${esc(l)}</span></button>`).join("")}</div>`}
 const nextBtn=(ok,label="次へ")=>`<button class="btn rose" id="next" type="button"${ok?"":" disabled"}>${label}</button>`;
 const tapHint=(has)=>has?nextBtn(true):`<p class="taphint">えらぶと、次へ進みます</p>`;
-const footer=()=>`<footer><div><a class="fps" href="https://motonory-a.github.io/japan-power-spots/?utm_source=bracelet&utm_medium=banner&utm_content=footer" target="_blank" rel="noopener" data-track="ps_footer">⛩ 開運パワースポット巡り</a></div><div><button type="button" class="copyurl" data-copyurl>🔗 このサイトのリンクをコピー</button></div><div>運営:<a href="${SHOP_URL}" target="_blank" rel="noopener">高次元SHOP</a>(アッキーの天然石ブレスレット屋さん)</div><div><a href="${LAW_URL}" target="_blank" rel="noopener">特定商取引法に基づく表記</a>　<a href="privacy/">プライバシーについて</a></div></footer>`;
+const footer=()=>`<footer><div><a class="fps" href="https://motonory-a.github.io/japan-power-spots/?utm_source=bracelet&utm_medium=banner&utm_content=footer" target="_blank" rel="noopener" data-track="ps_footer">⛩ 開運パワースポット巡り</a></div><div><a class="fps" href="https://motonory-a.github.io/kippoui-hikkoshi/?utm_source=bracelet&utm_medium=banner&utm_content=footer" target="_blank" rel="noopener" data-track="kh_footer">🌕 開運！吉方位　引越しナビ</a></div><div><button type="button" class="copyurl" data-copyurl>🔗 このサイトのリンクをコピー</button></div><div>運営:<a href="${SHOP_URL}" target="_blank" rel="noopener">高次元SHOP</a>(アッキーの天然石ブレスレット屋さん)</div><div><a href="${LAW_URL}" target="_blank" rel="noopener">特定商取引法に基づく表記</a>　<a href="privacy/">プライバシーについて</a></div></footer>`;
 // 1画面に収まる質問レイアウト(次へボタンは下に固定)
 const qScreen=(cur,title,sub,body,bar)=>`<div class="q">${header(cur)}<div class="qbody"><h2 class="qt">${title}</h2>${sub?`<p class="qs">${sub}</p>`:""}${body}</div><div class="qbar">${bar}</div></div>`;
 // 生年月日などをこのスマホに記憶(次回からワンタップ)
@@ -1872,6 +1877,12 @@ function resultHTML(){
       <h3>次のお休み、<br>どこに<br>行こうか？</h3></div>
       <div class="psbody"><p>生年月日と出発地から、<br>あなたに合う聖地を診断します。<br>願いごとから探すこともできます。</p>
       <span class="psbtn">開運パワースポット巡りへ <span aria-hidden="true">›</span></span></div>
+    </a>
+    <a class="khban" href="https://motonory-a.github.io/kippoui-hikkoshi/?utm_source=bracelet&utm_medium=banner&utm_content=result" target="_blank" rel="noopener" data-track="kh_banner">
+      <div class="kheye">アッキーの引越し・移転の吉方位サイト</div>
+      <h3>開運！吉方位　引越しナビ</h3>
+      <p>いつ、どの方位へ動くか。<br>生年月日と住所から、引越しや<br>事務所移転に良い日と場所を出します。</p>
+      <span class="khbtn">引越しの吉方位を調べる <span aria-hidden="true">›</span></span>
     </a>
     <button class="linkbtn" id="restart" type="button">最初からやり直す</button>${TEST_MODE?feedbackHTML():""}</div>`;
 }
