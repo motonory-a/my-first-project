@@ -34,6 +34,8 @@ A free Japanese website that reads your "soul lineage" — one of 94 types such 
 
 ## 運営者の発信
 
+- 運営者の入口ページ（全サイトの一覧）: https://motonory-a.github.io/
+
 - 高次元SHOP: https://kojigen.base.shop/
 - note: https://note.com/nigihayahi03/m/me5c3d299b032
 - X: https://x.com/nigihayahi03
