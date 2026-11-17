@@ -294,6 +294,13 @@ h1,h2,h3,.kwcatch,.lead,.cats p,.month p,.lk b,.why,.akki p{word-break:auto-phra
 .opts.two .opt .mk{width:16px;height:16px}
 .chip{font-size:16px;padding:10px 15px}
 input.big{font-size:20px;padding:14px;text-align:center}
+.seg.two{grid-template-columns:1fr 1fr}
+.giftnote{margin:4px 0 0;font-weight:700;color:#B3475F}
+.xmasnote{margin:0;padding:12px 14px;border-radius:14px;background:#FBEFEF;border:1px solid #EBC8C8;color:#8E2F3C;font-size:14px;line-height:1.7}
+.relief{margin:0;text-align:center;font-size:13.5px;line-height:1.75;color:var(--ink)}
+.xmastop{margin:10px auto 0;max-width:330px;padding:12px 16px;border-radius:16px;background:linear-gradient(135deg,#FFF5F5,#FDEBEC);border:1px solid #EFC9CC;color:#8E2F3C;text-align:center;font-size:14.5px;line-height:1.7}
+.giftgo{margin:8px 0 4px;border:0;background:#B3475F;color:#fff;font:700 14px/1 var(--f-body);padding:11px 18px;border-radius:999px;cursor:pointer}
+.xmastop small{font-size:12px;color:#A55}
 .bdin{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:8px}
 .bdin label{display:flex;align-items:center;gap:4px;font-weight:700;color:var(--ink)}
 .bdin input,.bdin select{font-size:20px;padding:12px 6px;text-align:center;text-align-last:center}
@@ -1541,7 +1548,7 @@ const SOUL_FULL={"プレアデス星人": "soul/f01.webp", "シリウス星人":
 function track(n,p){try{if(window.gtag)gtag("event",n,p||{})}catch(e){}}
 const soulImg=(s,cls)=>SOUL_IMG[s.name]?`<img class="simg ${cls}" src="${SOUL_IMG[s.name]}" alt="${s.name}のイメージ" loading="lazy" decoding="async">`:"";
 /* ---------- 状態 ---------- */
-const BLANK=()=>({step:0,birth:"",gender:"",lineDone:false,theme:null,ans:{},likeColors:[],avoidColors:[],vibes:[],liked:[],likedOther:"",avoidStones:"",budget:null,free:"",result:null,sel:0,wrist:null,wristUnknown:false,name:"",zip:"",addr:"",note:""});
+const BLANK=()=>({step:0,gift:false,birth:"",gender:"",lineDone:false,theme:null,ans:{},likeColors:[],avoidColors:[],vibes:[],liked:[],likedOther:"",avoidStones:"",budget:null,free:"",result:null,sel:0,wrist:null,wristUnknown:false,name:"",zip:"",addr:"",note:""});
 const S=BLANK();
 const app=document.getElementById("app");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1566,6 +1573,7 @@ const footer=()=>`<footer><div><a class="fps" href="https://motonory-a.github.io
 const qScreen=(cur,title,sub,body,bar)=>`<div class="q">${header(cur)}<div class="qbody"><h2 class="qt">${title}</h2>${sub?`<p class="qs">${sub}</p>`:""}${body}</div><div class="qbar">${bar}</div></div>`;
 // 生年月日などをこのスマホに記憶(次回からワンタップ)
 const STORE="kaiun-stone-v1";
+const XMAS=(()=>{const n=new Date(Date.now()+9*3600e3); return n.getUTCFullYear()===2026&&n.getUTCMonth()===10||n.getUTCFullYear()===2026&&n.getUTCMonth()===11&&n.getUTCDate()<=20})();
 function loadSaved(){try{return JSON.parse(localStorage.getItem(STORE)||"{}")}catch(e){return {}}}
 function saveSaved(o){try{localStorage.setItem(STORE,JSON.stringify(Object.assign(loadSaved(),o)))}catch(e){}}
 (function(){const sv=loadSaved(); if(sv.birth) S.birth=sv.birth; if(sv.gender) S.gender=sv.gender; if(sv.lineDone) S.lineDone=true;})();
@@ -1576,13 +1584,14 @@ const fmtBirth=b=>{const [y,m,d]=b.split("-").map(Number); return `${y}年${m}�
 function render(){
   const cur=flow()[S.step]; let h="";
   if(cur.k==="intro") h=introHTML();
-  else if(cur.k==="birth") h=qScreen(cur,"生年月日を教えてください","お名前やメールアドレスは必要ありません",
-    `${bdHTML("bd",S.birth,2015)}
-    <div class="gsel"><b>性別</b><div class="seg" role="group" aria-label="性別">${[["f","女性"],["m","男性"],["x","答えない"]].map(g=>`<button type="button" data-g="${g[0]}" aria-pressed="${S.gender===g[0]}">${g[1]}</button>`).join("")}</div></div>
+  else if(cur.k==="birth") h=qScreen(cur,S.gift?"贈る相手の生年月日を教えてください":"生年月日を教えてください",S.gift?"相手の方の生年月日で鑑定します":"お名前やメールアドレスは必要ありません",
+    `<div class="gsel"><b>どなたのブレスレット？</b><div class="seg two" role="group" aria-label="用途"><button type="button" data-gift="0" aria-pressed="${!S.gift}">自分用</button><button type="button" data-gift="1" aria-pressed="${S.gift}">🎁 プレゼント用</button></div></div>
+    ${bdHTML("bd",S.birth,S.gift?2025:2015)}
+    <div class="gsel"><b>${S.gift?"相手の性別":"性別"}</b><div class="seg" role="group" aria-label="性別">${[["f","女性"],["m","男性"],["x","答えない"]].map(g=>`<button type="button" data-g="${g[0]}" aria-pressed="${S.gender===g[0]}">${g[1]}</button>`).join("")}</div></div>
     
-    <p class="note">生年月日はこのスマホの中だけに記憶され、次回から入力不要になります。</p><div class="err" id="err"></div>`,nextBtn(true,"鑑定をはじめる"));
+    <p class="note">${S.gift?"相手の方の生年月日は、どこにも保存されません。":"生年月日はこのスマホの中だけに記憶され、次回から入力不要になります。"}</p><div class="err" id="err"></div>`,nextBtn(true,"鑑定をはじめる"));
   else if(cur.k==="theme"){const sel=THEMES.findIndex(t=>t.id===S.theme);
-    h=qScreen(cur,"今いちばん気になることは？","",optsHTML(THEMES.map(t=>t.label),sel),tapHint(sel>=0))}
+    h=qScreen(cur,S.gift?"贈る相手に、どんな運を届けたい？":"今いちばん気になることは？","",optsHTML(THEMES.map(t=>t.label),sel),tapHint(sel>=0))}
   else if(cur.k==="branch"){const b=BRANCH[S.theme][cur.idx];
     h=qScreen(cur,esc(b.q),b.note||"",optsHTML(b.opts.map(o=>o[0]),S.ans[b.id]),tapHint(S.ans[b.id]!=null))}
   else if(cur.k==="likeColors"||cur.k==="avoidColors"){const key=cur.k, like=key==="likeColors";
@@ -1612,7 +1621,7 @@ function introHTML(){
     <div class="soulq2"><span class="latin">Soul Roots</span><p class="q1">あなたの魂は、<br>どこから来たのでしょう？</p><p>オリオン、プレアデス、地底の一族、神様、天使…<br>全${SOULS.length}種の中から、あなたの魂のルーツをお伝えします。</p></div>
     <div class="toprule"></div>
     <div class="topsub"><p class="sub2">魂の系統で選ぶ<br class="sp">天然石ブレスレット</p><div class="caps">Power Stone Bracelet</div></div>
-    <p class="ribbon"><i>✦</i>生年月日で楽しむ　<b>無料の開運鑑定</b><i>✦</i></p>
+    <p class="ribbon"><i>✦</i>生年月日で楽しむ　<b>無料の開運鑑定</b><i>✦</i></p>${XMAS?`<p class="xmastop">🎄 クリスマスプレゼントにも。<br>贈る相手の生年月日で鑑定できます。<br><button type="button" class="giftgo" data-giftstart>🎁 プレゼント用に鑑定する ›</button><br><small>ご相談は12月20日まで</small></p>`:""}
     <p class="lead">あなたの<b>魂の系統</b>と今年の運勢を鑑定し、<br>ピッタリの天然石で<br>世界で一つのブレスレットをご提案します。</p></div>
     ${FRIEND?`<div class="sharebox center"><b>お友だちから魂の系統が届きました</b><p>${soulImg(FRIEND,"md")}お友だちの魂は<br><mark>${FRIEND.name}</mark>(${FRIEND.g})。<br>あなたの魂は？<br>鑑定すると、二人の相性もわかります。</p></div>`:""}
     ${sv?`<div class="stack" style="gap:10px"><button class="btn rose cta shine" id="again" type="button">前回の生年月日で鑑定する<span class="arr">›</span></button><p class="center small muted">${fmtBirth(S.birth)}生まれ　<button class="linkbtn" id="start" type="button">別の生年月日で鑑定する</button></p></div>`
@@ -1908,7 +1917,7 @@ function resultHTML(){
   if(!S.result) S.result=makeDesigns();
   const {F,designs}=S.result; const D=designs[S.sel]; 
   return `<div class="stack-lg">
-    <div class="stack" style="gap:4px"><div class="latin">Result</div><h2>鑑定結果</h2><a class="jump" href="#designs">↓ ブレスレットのデザインを見る</a></div>
+    <div class="stack" style="gap:4px"><div class="latin">Result</div><h2>鑑定結果</h2>${S.gift?`<p class="giftnote">🎁 贈る相手の方の鑑定結果です</p>`:""}<a class="jump" href="#designs">↓ ブレスレットのデザインを見る</a></div>
     ${fortuneHTML(F)}
     <section class="stack" id="designs"><div class="stack" style="gap:4px"><div class="latin">3 Designs for You</div><h2>鑑定から生まれた<br>あなたの3つのブレスレット</h2>
       <p class="small muted">気になるデザインをタップしてください</p></div>
@@ -1980,7 +1989,9 @@ function orderHTML(){
       <label class="f">アッキーへのご要望(任意)<textarea id="nt" style="min-height:80px" placeholder="例:誕生日までに欲しいです/苦手な色・石があれば教えてください/ビデオ通話は平日の夜が希望です">${esc(S.note)}</textarea></label>
       <p class="note">入力した内容はこのサイトには保存されず、次のボタンでLINEのメッセージとしてアッキーに届きます。</p>
     </div>
+    ${XMAS?`<p class="xmasnote">🎄 クリスマスに間に合わせたい方は、<b>12月20日まで</b>にご相談ください。</p>`:""}
     <div class="err" id="err"></div>
+    <p class="relief">送っても、まだ注文にはなりません。<br>内容を見て、アッキーが直接お返事します。<br>気軽にご相談ください。</p>
     <a class="btn line" id="send" href="#" target="_blank" rel="noopener">LINEでアッキーに送る</a>
     <button class="btn ghost" id="saveimg" type="button">完成図の画像を保存・送る</button>
     <div class="toast" id="msg"></div>
@@ -2031,6 +2042,7 @@ function orderText(){
     `■仕様:${sp.line1}/${sp.line2}/並べ方:${sp.layoutName}`,
     `■ご希望の価格帯:${BUDGETS[S.budget]}`,
     `■生年月日:${S.birth}(${F.honName}/ライフパス${F.lp})`, S.gender==="f"?"■性別:女性":S.gender==="m"?"■性別:男性":"",
+    S.gift?`■用途:プレゼント用(上記は贈る相手の生年月日です)`:"",
     `■テーマ:${theme}${first?"(" + first + ")":""}`,
     `■ご要望:${S.note||"なし"}`, link?`■完成図:${link}`:"", "■LINE登録特典(1万円以上ご注文で3,000円引き！)を利用します"].filter(Boolean).join("\n");
 }
@@ -2057,17 +2069,18 @@ async function makeCard(D){
 /* ---------- 操作 ---------- */
 function bind(cur){
   $("back")&&($("back").onclick=()=>go(-1));
-  if(cur.k==="intro"){ $("start").onclick=()=>go(1); $("again")&&($("again").onclick=()=>{S.result=null; S.step=2; render(); window.scrollTo({top:0})});
+  if(cur.k==="intro"){ $("start").onclick=()=>go(1); app.querySelectorAll("[data-giftstart]").forEach(b=>b.onclick=()=>{S.gift=true; S.birth=""; S.gender=""; S.result=null; track("gift_mode"); go(1)}); $("again")&&($("again").onclick=()=>{S.result=null; S.step=2; render(); window.scrollTo({top:0})});
     const main=$("again")||$("start"), bar=$("ctabar"); $("ctago").onclick=()=>main.click();
     if("IntersectionObserver" in window){ new IntersectionObserver(es=>es.forEach(e=>bar.classList.toggle("hide",e.isIntersecting))).observe(main) } }
   if(cur.k==="birth"){
+    app.querySelectorAll("[data-gift]").forEach(b=>b.onclick=()=>{const g=b.dataset.gift==="1"; if(g===S.gift) return; S.gift=g; const sv=loadSaved(); S.birth=g?"":(sv.birth||""); S.gender=g?"":(sv.gender||""); S.result=null; if(g) track("gift_mode"); render()});
     app.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{S.gender=b.dataset.g; S.result=null; app.querySelectorAll("[data-g]").forEach(z=>z.setAttribute("aria-pressed",z===b))});
     
     
     bdBind("bd");
     $("next").onclick=()=>{const R=bdRead("bd"); S.birth=R.v||"";
       const e=R.err||"";
-      if(e){$("err").textContent=e;return} saveSaved({birth:S.birth,lineDone:true,gender:S.gender||""}); S.result=null; go(1)};
+      if(e){$("err").textContent=e;return} if(!S.gift) saveSaved({birth:S.birth,lineDone:true,gender:S.gender||""}); S.result=null; go(1)};
   }
   const auto=()=>setTimeout(()=>go(1),220);
   const pick=(btn)=>{btn.parentNode.querySelectorAll(".opt").forEach(z=>z.setAttribute("aria-pressed",z===btn)); auto()};
@@ -2101,7 +2114,7 @@ function bindResult(){
     const me=R.F.soul, him=SOULS[soulIndexOf(v)], sc=soulMatch(me,him);
     $("pres").innerHTML=`<div class="pcard" style="--sc:${EL_COLOR[him.el]}">${soulImg(him,"md")}<small>あの人の魂の系統</small><b>${him.name}</b><span class="small">${him.g}・${him.stance}・${him.trait}</span>
       <div class="pscore"><span>二人の相性</span><b>${sc}%</b></div><p>${matchMessage(sc)}</p>${(()=>{try{const a=shukuOf(R.F.birth||S.birth), b=shukuOf(v), r=shukuRel(a,b), T=SHUKU_REL[r]; return `<div class="shuku"><small>宿曜で見るふたり</small><b>「${r}」の関係</b><p class="small muted">あなた：${SHUKU[a]}宿 ／ あの人：${SHUKU[b]}宿</p><p class="small"><b>${T[0]}</b>。${T[1]}</p><p class="akkiline"><b>アッキーより</b>「${T[2]}」</p></div>`}catch(e){return ""}})()}</div>`;};
-  $("restart").onclick=()=>{const b=S.birth,l=S.lineDone,g=S.gender; Object.assign(S,BLANK(),{birth:b,lineDone:l,gender:g}); render(); window.scrollTo({top:0})};
+  $("restart").onclick=()=>{const sv=loadSaved(), b=S.gift?(sv.birth||""):S.birth,l=S.lineDone,g=S.gift?(sv.gender||""):S.gender; Object.assign(S,BLANK(),{birth:b,lineDone:l,gender:g}); render(); window.scrollTo({top:0})};
   if(TEST_MODE) bindFeedback();
 }
 function bindDetail(){
