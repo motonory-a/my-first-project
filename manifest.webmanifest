@@ -1,0 +1,29 @@
+{
+  "name": "大開運！魂の系統鑑定",
+  "short_name": "魂の系統鑑定",
+  "description": "生年月日から魂の系統を鑑定し、あなたに合う天然石ブレスレットを選びます。",
+  "lang": "ja",
+  "start_url": "./?source=homescreen",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#FBF6F7",
+  "theme_color": "#FBF6F7",
+  "icons": [
+    {
+      "src": "icon/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "icon/maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
